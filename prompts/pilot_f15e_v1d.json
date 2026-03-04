@@ -1,0 +1,14 @@
+{
+  "prompt": "Photorealistic portrait of a man in his late 30s seated low inside the open cockpit of an F-15E Strike Eagle on the tarmac. The pilot is seated deep and low in the ACES II ejection seat so the cockpit rails and instrument panel surround him prominently — the thick cockpit side rails and canopy frame are clearly visible above and around him. His body and torso are oriented naturally forward toward the instrument panel and HUD, sitting upright in the ejection seat. He has turned his head to his left to look directly at the camera. The cockpit is unmistakably an F-15E Strike Eagle front cockpit: large wide-angle Kaiser HUD with a wide rectangular combiner glass frame dominating the upper center of the instrument panel, two Kaiser monochrome green-on-black CRT displays in the upper left and upper right corners of the instrument panel, a center color multifunction display (MFD), MPCD in the lower left area, distinctive F-15E instrument panel layout with analog backup gauges, ACES II ejection seat with yellow and black D-ring handle visible between his legs, thick canopy bow and side rails. Full USAF olive drab flight suit with squadron patches and G-suit leg panels, HGU-55/P helmet with JHMCS hardware — visible electromagnetic sensor emitter pods on the helmet exterior, JHMCS monocular display unit on the right visor rail, dark visor raised fully up, oxygen mask hanging to the side. His face must exactly match the reference: short buzzed dark hair, very short dark stubble beard, brown eyes, olive Mediterranean skin tone, warm relaxed smile, compact proportionate nose. Shot with 85mm lens at f/2.0, ISO 200, bright afternoon sunlight. Tarmac and airfield visible beyond the open cockpit. Realistic skin texture, no smoothing. Do not alter his facial features. Identity must match reference photograph exactly.",
+  "negative_prompt": "F-18 cockpit, FA-18 cockpit, Hornet cockpit, wrong cockpit, sitting too high, pilot too high in seat, elongated nose, long nose tip, different person, wrong face, bald head, full beard, body facing camera, plain smooth helmet, simple helmet, smooth skin, plastic skin, airbrushed, beauty filter, CGI, 3D render, cartoon, visor down, studio backdrop, anatomy normalization, skin smoothing, watermark, text overlay",
+  "image_input": [
+    "images/_DSC9587.jpg",
+    "images/pilot_f15e_v1c.jpg"
+  ],
+  "api_parameters": {
+    "google_search": false,
+    "resolution": "2K",
+    "output_format": "jpg",
+    "aspect_ratio": "3:4"
+  }
+}

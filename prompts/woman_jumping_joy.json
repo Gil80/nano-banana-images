@@ -1,0 +1,18 @@
+{
+  "prompt": "Candid documentary-style photograph of a woman in her late 20s mid-jump in the air, captured at peak height with both feet completely off the ground, arms flung wide open above her head, mouth open in a wide genuine laugh, eyes crinkled with real joy. Shot with a 35mm lens at f/2.8, ISO 400, 1/1000s shutter speed to freeze motion. Natural afternoon daylight from camera-left creates warm directional light across her face, casting a soft shadow on her opposite cheek. She wears a light floral sundress that billows and catches air mid-jump, hair flying upward from the momentum. Slight motion blur on the dress hem and hair tips shows real kinetic energy. Skin shows natural texture — subtle pores on her nose, a faint freckle near her left eye, no visible makeup beyond natural skin tone. Background is a blurred sunlit urban park with green trees and bokeh of distant people, depth of field isolating her against a creamy soft background. Photo captured slightly below eye level looking up, emphasizing airborne height. Authentic human moment, unposed, raw energy. Do not beautify or smooth skin. Do not add makeup. No AI beauty filters. No studio lighting. No plastic look.",
+  "negative_prompt": "plastic skin, skin smoothing, airbrushed texture, beauty filter, studio lighting, harsh artificial light, posed model look, fashion editorial, CGI, 3D render, anatomy normalization, body proportion averaging, dataset-average anatomy, over-saturated colors, HDR glow, lens flare, mirror selfie, stylized realism, editorial fashion proportions, symmetrical perfection, more realistic reinterpretation, heavy film grain, excessive noise, watermark, text overlay",
+  "api_parameters": {
+    "google_search": false,
+    "resolution": "2K",
+    "output_format": "jpg",
+    "aspect_ratio": "4:5"
+  },
+  "settings": {
+    "resolution": "2K",
+    "style": "documentary realism, candid photography",
+    "lighting": "natural afternoon daylight, warm directional",
+    "camera_angle": "slightly below eye level, 35mm lens f/2.8 ISO 400",
+    "depth_of_field": "shallow, subject sharp, background bokeh",
+    "quality": "high detail, unretouched, authentic motion"
+  }
+}
