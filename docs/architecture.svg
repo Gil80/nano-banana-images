@@ -1,194 +1,264 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" font-family="'Segoe UI', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 880"
+     font-family="'Segoe UI', system-ui, Arial, sans-serif">
 
-  <!-- Background -->
-  <rect width="900" height="640" fill="#0f1117" rx="12"/>
+  <defs>
+    <!-- Arrow markers -->
+    <marker id="a-blue"   markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#4f6ef7"/></marker>
+    <marker id="a-amber"  markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#f59e0b"/></marker>
+    <marker id="a-green"  markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#22c55e"/></marker>
+    <marker id="a-indigo" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#818cf8"/></marker>
+    <marker id="a-violet" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#a78bfa"/></marker>
+    <marker id="a-red"    markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#f87171"/></marker>
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <!-- Gradient for output image placeholder -->
+    <linearGradient id="img-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Title -->
-  <text x="450" y="42" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff">nano-banana-images — Architecture</text>
-  <text x="450" y="64" text-anchor="middle" font-size="13" fill="#8b8fa8">AI Image Generation Toolkit · Reference-preserving · Multi-backend</text>
+  <!-- ═══════════════════════════════════════════
+       BACKGROUND
+       ═══════════════════════════════════════════ -->
+  <rect width="1600" height="880" fill="#0d1117"/>
 
-  <!-- ─── COLUMN HEADERS ─── -->
-  <!-- Col 1: User -->
-  <text x="90" y="100" text-anchor="middle" font-size="11" fill="#6b7280" letter-spacing="1">INPUT</text>
-  <!-- Col 2: Script -->
-  <text x="310" y="100" text-anchor="middle" font-size="11" fill="#6b7280" letter-spacing="1">SCRIPT</text>
-  <!-- Col 3: Backend -->
-  <text x="580" y="100" text-anchor="middle" font-size="11" fill="#6b7280" letter-spacing="1">BACKEND</text>
-  <!-- Col 4: Output -->
-  <text x="800" y="100" text-anchor="middle" font-size="11" fill="#6b7280" letter-spacing="1">OUTPUT</text>
+  <!-- ═══════════════════════════════════════════
+       TITLE
+       ═══════════════════════════════════════════ -->
+  <text x="800" y="50" text-anchor="middle" font-size="28" font-weight="700" fill="#f1f5f9">
+    nano-banana-images — Architecture
+  </text>
+  <text x="800" y="76" text-anchor="middle" font-size="15" fill="#64748b">
+    AI Image Generation Toolkit · Reference-preserving · Multi-backend
+  </text>
 
-  <!-- ─── COLUMN DIVIDERS ─── -->
-  <line x1="195" y1="90" x2="195" y2="610" stroke="#1e2030" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="450" y1="90" x2="450" y2="610" stroke="#1e2030" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="700" y1="90" x2="700" y2="610" stroke="#1e2030" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- ═══════════════════════════════════════════
+       COLUMN DIVIDERS
+       ═══════════════════════════════════════════ -->
+  <line x1="320"  y1="92" x2="320"  y2="652" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
+  <line x1="745"  y1="92" x2="745"  y2="652" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
+  <line x1="1195" y1="92" x2="1195" y2="652" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
 
-  <!-- ══════════════════════════════
+  <!-- ═══════════════════════════════════════════
+       COLUMN HEADERS
+       ═══════════════════════════════════════════ -->
+  <text x="160"  y="100" text-anchor="middle" font-size="11" font-weight="600" fill="#475569" letter-spacing="2">INPUT</text>
+  <text x="532"  y="100" text-anchor="middle" font-size="11" font-weight="600" fill="#475569" letter-spacing="2">SCRIPTS</text>
+  <text x="970"  y="100" text-anchor="middle" font-size="11" font-weight="600" fill="#475569" letter-spacing="2">BACKENDS</text>
+  <text x="1392" y="100" text-anchor="middle" font-size="11" font-weight="600" fill="#475569" letter-spacing="2">OUTPUT</text>
+
+  <!-- ═══════════════════════════════════════════
        INPUT COLUMN
-       ══════════════════════════════ -->
+       ═══════════════════════════════════════════ -->
 
-  <!-- Prompt JSON box -->
-  <rect x="20" y="115" width="150" height="70" rx="8" fill="#1a1f2e" stroke="#4f6ef7" stroke-width="1.5"/>
-  <text x="95" y="140" text-anchor="middle" font-size="13" font-weight="bold" fill="#4f6ef7">📄 Prompt JSON</text>
-  <text x="95" y="158" text-anchor="middle" font-size="10" fill="#9ca3af">prompt · neg_prompt</text>
-  <text x="95" y="172" text-anchor="middle" font-size="10" fill="#9ca3af">aspect_ratio · resolution</text>
+  <!-- Prompt JSON -->
+  <rect x="35" y="118" width="250" height="125" rx="10" fill="#0f172a" stroke="#4f6ef7" stroke-width="2" filter="url(#shadow)"/>
+  <text x="160" y="146" text-anchor="middle" font-size="16" font-weight="700" fill="#4f6ef7">Prompt JSON</text>
+  <line x1="48" y1="156" x2="272" y2="156" stroke="#1e3a8a" stroke-width="1"/>
+  <text x="160" y="174" text-anchor="middle" font-size="12" fill="#94a3b8">prompt · negative_prompt</text>
+  <text x="160" y="192" text-anchor="middle" font-size="12" fill="#94a3b8">aspect_ratio · resolution</text>
+  <text x="160" y="210" text-anchor="middle" font-size="11" fill="#4f6ef7">prompts/*.json</text>
+  <text x="160" y="228" text-anchor="middle" font-size="11" fill="#64748b">structured like a photo brief</text>
 
-  <!-- Reference Image box -->
-  <rect x="20" y="215" width="150" height="60" rx="8" fill="#1a1f2e" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="95" y="239" text-anchor="middle" font-size="13" font-weight="bold" fill="#f59e0b">🖼 Reference Image</text>
-  <text x="95" y="257" text-anchor="middle" font-size="10" fill="#9ca3af">optional · local file</text>
-  <text x="95" y="270" text-anchor="middle" font-size="10" fill="#9ca3af">for identity preservation</text>
+  <!-- Reference Image -->
+  <rect x="35" y="272" width="250" height="110" rx="10" fill="#0f172a" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="160" y="300" text-anchor="middle" font-size="16" font-weight="700" fill="#f59e0b">Reference Image</text>
+  <text x="160" y="318" text-anchor="middle" font-size="12" fill="#fcd34d">optional</text>
+  <line x1="48" y1="326" x2="272" y2="326" stroke="#78350f" stroke-width="1"/>
+  <text x="160" y="344" text-anchor="middle" font-size="12" fill="#94a3b8">local file → uploaded to API</text>
+  <text x="160" y="362" text-anchor="middle" font-size="12" fill="#94a3b8">preserves identity / style</text>
 
-  <!-- ── arrows into script ── -->
-  <!-- Prompt → Script -->
-  <line x1="170" y1="150" x2="232" y2="165" stroke="#4f6ef7" stroke-width="1.5" marker-end="url(#arr-blue)"/>
-  <!-- Ref image → Script -->
-  <line x1="170" y1="245" x2="232" y2="205" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr-amber)"/>
+  <!-- ═══════════════════════════════════════════
+       ARROWS: INPUT → SCRIPTS
+       ═══════════════════════════════════════════ -->
 
-  <!-- ══════════════════════════════
-       SCRIPT COLUMN
-       ══════════════════════════════ -->
+  <!-- Prompt → generate_kie (horizontal) -->
+  <line x1="285" y1="180" x2="345" y2="180" stroke="#4f6ef7" stroke-width="2" marker-end="url(#a-blue)"/>
 
-  <!-- generate_kie.py — primary -->
-  <rect x="215" y="115" width="185" height="90" rx="8" fill="#1a2a1a" stroke="#22c55e" stroke-width="2"/>
-  <text x="307" y="138" text-anchor="middle" font-size="12" font-weight="bold" fill="#22c55e">generate_kie.py</text>
-  <text x="307" y="154" text-anchor="middle" font-size="10" fill="#86efac">PRIMARY · Kie.ai API</text>
-  <text x="307" y="170" text-anchor="middle" font-size="10" fill="#9ca3af">Upload ref → submit task</text>
-  <text x="307" y="184" text-anchor="middle" font-size="10" fill="#9ca3af">poll status → download</text>
-  <rect x="215" y="113" width="66" height="16" rx="4" fill="#22c55e"/>
-  <text x="248" y="124" text-anchor="middle" font-size="9" font-weight="bold" fill="#0f1117">RECOMMENDED</text>
+  <!-- Reference → generate_kie (diagonal, enters lower part of box) -->
+  <path d="M285,327 L315,327 L345,210" stroke="#f59e0b" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#a-amber)"/>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS COLUMN
+       ═══════════════════════════════════════════ -->
+
+  <!-- generate_kie.py — PRIMARY -->
+  <rect x="345" y="118" width="355" height="135" rx="10" fill="#052e16" stroke="#22c55e" stroke-width="2.5" filter="url(#shadow)"/>
+  <!-- RECOMMENDED badge -->
+  <rect x="345" y="107" width="110" height="20" rx="5" fill="#22c55e"/>
+  <text x="400" y="121" text-anchor="middle" font-size="10" font-weight="700" fill="#052e16">RECOMMENDED</text>
+  <text x="522" y="146" text-anchor="middle" font-size="16" font-weight="700" fill="#22c55e">generate_kie.py</text>
+  <text x="522" y="164" text-anchor="middle" font-size="12" fill="#86efac">PRIMARY · Kie.ai nano-banana-2 API</text>
+  <line x1="358" y1="173" x2="687" y2="173" stroke="#14532d" stroke-width="1"/>
+  <text x="522" y="191" text-anchor="middle" font-size="12" fill="#94a3b8">Upload reference → submit task → poll status</text>
+  <text x="522" y="209" text-anchor="middle" font-size="12" fill="#94a3b8">download result · KIE_API_KEY required</text>
+  <text x="522" y="227" text-anchor="middle" font-size="11" fill="#4ade80">Supports reference image input</text>
+  <text x="522" y="243" text-anchor="middle" font-size="11" fill="#64748b">Highest quality · 2K output</text>
 
   <!-- generate_sdxl.py -->
-  <rect x="215" y="230" width="185" height="65" rx="8" fill="#1a1a2a" stroke="#818cf8" stroke-width="1.5"/>
-  <text x="307" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#818cf8">generate_sdxl.py</text>
-  <text x="307" y="268" text-anchor="middle" font-size="10" fill="#c7d2fe">Free cloud · Puter.ai</text>
-  <text x="307" y="282" text-anchor="middle" font-size="10" fill="#9ca3af">No API key required</text>
+  <rect x="345" y="280" width="355" height="100" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="522" y="308" text-anchor="middle" font-size="16" font-weight="700" fill="#818cf8">generate_sdxl.py</text>
+  <text x="522" y="326" text-anchor="middle" font-size="12" fill="#c7d2fe">Free cloud · Puter.ai SDXL</text>
+  <line x1="358" y1="334" x2="687" y2="334" stroke="#312e81" stroke-width="1"/>
+  <text x="522" y="352" text-anchor="middle" font-size="12" fill="#94a3b8">Single HTTP POST · no API key needed</text>
+  <text x="522" y="370" text-anchor="middle" font-size="11" fill="#64748b">1024 × 1024 · text prompt only</text>
 
   <!-- generate_local.py -->
-  <rect x="215" y="318" width="185" height="65" rx="8" fill="#1a1a2a" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="307" y="340" text-anchor="middle" font-size="12" font-weight="bold" fill="#a78bfa">generate_local.py</text>
-  <text x="307" y="356" text-anchor="middle" font-size="10" fill="#ddd6fe">Local SDXL · diffusers</text>
-  <text x="307" y="370" text-anchor="middle" font-size="10" fill="#9ca3af">GPU/CPU · ~5GB model</text>
+  <rect x="345" y="407" width="355" height="100" rx="10" fill="#1a0a2e" stroke="#a78bfa" stroke-width="2" filter="url(#shadow)"/>
+  <text x="522" y="435" text-anchor="middle" font-size="16" font-weight="700" fill="#a78bfa">generate_local.py</text>
+  <text x="522" y="453" text-anchor="middle" font-size="12" fill="#ddd6fe">Local SDXL · HuggingFace diffusers</text>
+  <line x1="358" y1="461" x2="687" y2="461" stroke="#2e1065" stroke-width="1"/>
+  <text x="522" y="479" text-anchor="middle" font-size="12" fill="#94a3b8">Runs on-device · GPU (CUDA) or CPU</text>
+  <text x="522" y="497" text-anchor="middle" font-size="11" fill="#64748b">No API key · ~5 GB model download</text>
 
   <!-- generate_hf.py -->
-  <rect x="215" y="406" width="185" height="65" rx="8" fill="#221a1a" stroke="#f87171" stroke-width="1.5"/>
-  <text x="307" y="428" text-anchor="middle" font-size="12" font-weight="bold" fill="#f87171">generate_hf.py</text>
-  <text x="307" y="444" text-anchor="middle" font-size="10" fill="#fca5a5">Hugging Face Spaces</text>
-  <text x="307" y="458" text-anchor="middle" font-size="10" fill="#9ca3af">HF_TOKEN required</text>
+  <rect x="345" y="534" width="355" height="100" rx="10" fill="#2d0a0a" stroke="#f87171" stroke-width="2" filter="url(#shadow)"/>
+  <text x="522" y="562" text-anchor="middle" font-size="16" font-weight="700" fill="#f87171">generate_hf.py</text>
+  <text x="522" y="580" text-anchor="middle" font-size="12" fill="#fca5a5">Hugging Face Spaces API</text>
+  <line x1="358" y1="588" x2="687" y2="588" stroke="#7f1d1d" stroke-width="1"/>
+  <text x="522" y="606" text-anchor="middle" font-size="12" fill="#94a3b8">HF_TOKEN required · SD 1.5 / SDXL / Flux</text>
+  <text x="522" y="624" text-anchor="middle" font-size="11" fill="#f87171">⚠ Free tier deprecated — billing required</text>
 
-  <!-- ── arrows script → backend ── -->
-  <line x1="400" y1="160" x2="462" y2="160" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arr-green)"/>
-  <line x1="400" y1="263" x2="462" y2="330" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
-  <line x1="400" y1="350" x2="462" y2="395" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr-violet)"/>
-  <line x1="400" y1="438" x2="462" y2="460" stroke="#f87171" stroke-width="1.5" marker-end="url(#arr-red)"/>
+  <!-- ═══════════════════════════════════════════
+       ARROWS: SCRIPTS → BACKENDS
+       ═══════════════════════════════════════════ -->
+  <line x1="700" y1="185" x2="765" y2="185" stroke="#22c55e" stroke-width="2"   marker-end="url(#a-green)"/>
+  <line x1="700" y1="330" x2="765" y2="330" stroke="#818cf8" stroke-width="2"   marker-end="url(#a-indigo)"/>
+  <line x1="700" y1="457" x2="765" y2="457" stroke="#a78bfa" stroke-width="2"   marker-end="url(#a-violet)"/>
+  <line x1="700" y1="584" x2="765" y2="584" stroke="#f87171" stroke-width="2"   marker-end="url(#a-red)"/>
 
-  <!-- ══════════════════════════════
-       BACKEND COLUMN
-       ══════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════
+       BACKENDS COLUMN
+       ═══════════════════════════════════════════ -->
 
   <!-- Kie.ai / nano-banana-2 -->
-  <rect x="462" y="115" width="210" height="105" rx="8" fill="#0f2320" stroke="#22c55e" stroke-width="2"/>
-  <text x="567" y="140" text-anchor="middle" font-size="13" font-weight="bold" fill="#22c55e">☁ Kie.ai</text>
-  <text x="567" y="158" text-anchor="middle" font-size="11" fill="#86efac">nano-banana-2 model</text>
-  <line x1="475" y1="167" x2="660" y2="167" stroke="#1f3d35" stroke-width="1"/>
-  <text x="567" y="182" text-anchor="middle" font-size="10" fill="#9ca3af">File upload · Task queue</text>
-  <text x="567" y="196" text-anchor="middle" font-size="10" fill="#9ca3af">Async polling · 2K output</text>
-  <text x="567" y="210" text-anchor="middle" font-size="10" fill="#6b7280">api.kie.ai/api/v1/jobs/</text>
+  <rect x="765" y="118" width="385" height="140" rx="10" fill="#052e16" stroke="#22c55e" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="957" y="146" text-anchor="middle" font-size="16" font-weight="700" fill="#22c55e">☁  Kie.ai</text>
+  <text x="957" y="165" text-anchor="middle" font-size="13" fill="#86efac">nano-banana-2 model</text>
+  <line x1="778" y1="174" x2="1137" y2="174" stroke="#14532d" stroke-width="1"/>
+  <text x="957" y="193" text-anchor="middle" font-size="12" fill="#94a3b8">File upload service → base64 → hosted URL</text>
+  <text x="957" y="211" text-anchor="middle" font-size="12" fill="#94a3b8">Async task queue · poll every 5s · max 5 min</text>
+  <text x="957" y="229" text-anchor="middle" font-size="12" fill="#94a3b8">2K resolution · JPEG · identity-preserving</text>
+  <text x="957" y="247" text-anchor="middle" font-size="11" fill="#64748b">api.kie.ai/api/v1/jobs/</text>
 
-  <!-- Puter.ai SDXL -->
-  <rect x="462" y="305" width="210" height="70" rx="8" fill="#131324" stroke="#818cf8" stroke-width="1.5"/>
-  <text x="567" y="328" text-anchor="middle" font-size="13" font-weight="bold" fill="#818cf8">☁ Puter.ai</text>
-  <text x="567" y="345" text-anchor="middle" font-size="11" fill="#c7d2fe">SDXL · Free tier</text>
-  <text x="567" y="362" text-anchor="middle" font-size="10" fill="#9ca3af">api.puter.ai/v2/image/generate</text>
+  <!-- Puter.ai -->
+  <rect x="765" y="290" width="385" height="100" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="957" y="318" text-anchor="middle" font-size="16" font-weight="700" fill="#818cf8">☁  Puter.ai</text>
+  <text x="957" y="336" text-anchor="middle" font-size="12" fill="#c7d2fe">Stable Diffusion XL base 1.0</text>
+  <line x1="778" y1="344" x2="1137" y2="344" stroke="#312e81" stroke-width="1"/>
+  <text x="957" y="362" text-anchor="middle" font-size="12" fill="#94a3b8">Single POST · no auth · returns image URL</text>
+  <text x="957" y="380" text-anchor="middle" font-size="11" fill="#64748b">api.puter.ai/v2/image/generate · 1024 × 1024</text>
 
   <!-- Local diffusers -->
-  <rect x="462" y="393" width="210" height="60" rx="8" fill="#17131f" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="567" y="415" text-anchor="middle" font-size="13" font-weight="bold" fill="#a78bfa">💻 Local GPU/CPU</text>
-  <text x="567" y="432" text-anchor="middle" font-size="11" fill="#ddd6fe">SDXL via diffusers + torch</text>
-  <text x="567" y="447" text-anchor="middle" font-size="10" fill="#9ca3af">Runs on-device · no API</text>
+  <rect x="765" y="422" width="385" height="95" rx="10" fill="#1a0a2e" stroke="#a78bfa" stroke-width="2" filter="url(#shadow)"/>
+  <text x="957" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#a78bfa">💻  Local GPU / CPU</text>
+  <text x="957" y="468" text-anchor="middle" font-size="12" fill="#ddd6fe">SDXL via diffusers + torch</text>
+  <line x1="778" y1="476" x2="1137" y2="476" stroke="#2e1065" stroke-width="1"/>
+  <text x="957" y="494" text-anchor="middle" font-size="12" fill="#94a3b8">Runs fully on-device · no network calls</text>
+  <text x="957" y="510" text-anchor="middle" font-size="11" fill="#64748b">CUDA GPU accelerated · CPU fallback</text>
 
-  <!-- HF -->
-  <rect x="462" y="471" width="210" height="55" rx="8" fill="#1f1313" stroke="#f87171" stroke-width="1.5"/>
-  <text x="567" y="493" text-anchor="middle" font-size="13" font-weight="bold" fill="#f87171">☁ Hugging Face</text>
-  <text x="567" y="510" text-anchor="middle" font-size="11" fill="#fca5a5">Spaces API · SD / Flux</text>
-  <text x="567" y="524" text-anchor="middle" font-size="10" fill="#9ca3af">Requires paid billing</text>
+  <!-- Hugging Face -->
+  <rect x="765" y="548" width="385" height="100" rx="10" fill="#2d0a0a" stroke="#f87171" stroke-width="2" filter="url(#shadow)"/>
+  <text x="957" y="576" text-anchor="middle" font-size="16" font-weight="700" fill="#f87171">☁  Hugging Face</text>
+  <text x="957" y="594" text-anchor="middle" font-size="12" fill="#fca5a5">Spaces API · SD 1.5 / SDXL / Flux</text>
+  <line x1="778" y1="602" x2="1137" y2="602" stroke="#7f1d1d" stroke-width="1"/>
+  <text x="957" y="620" text-anchor="middle" font-size="12" fill="#94a3b8">Fallback with multiple Space endpoints</text>
+  <text x="957" y="638" text-anchor="middle" font-size="11" fill="#f87171">⚠ Free inference deprecated · paid billing required</text>
 
-  <!-- ── arrows backend → output ── -->
-  <line x1="672" y1="167" x2="730" y2="200" stroke="#22c55e" stroke-width="2" marker-end="url(#arr-green)"/>
-  <line x1="672" y1="340" x2="730" y2="290" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arr-indigo)"/>
-  <line x1="672" y1="420" x2="730" y2="330" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr-violet)"/>
+  <!-- ═══════════════════════════════════════════
+       ARROWS: BACKENDS → OUTPUT
+       ═══════════════════════════════════════════ -->
+  <line x1="1150" y1="188"  x2="1215" y2="260"  stroke="#22c55e" stroke-width="2"   marker-end="url(#a-green)"/>
+  <line x1="1150" y1="340"  x2="1215" y2="360"  stroke="#818cf8" stroke-width="2"   marker-end="url(#a-indigo)"/>
+  <line x1="1150" y1="469"  x2="1215" y2="450"  stroke="#a78bfa" stroke-width="2"   marker-end="url(#a-violet)"/>
+  <line x1="1150" y1="598"  x2="1215" y2="530"  stroke="#f87171" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#a-red)"/>
 
-  <!-- ══════════════════════════════
+  <!-- ═══════════════════════════════════════════
        OUTPUT COLUMN
-       ══════════════════════════════ -->
+       ═══════════════════════════════════════════ -->
+  <rect x="1215" y="118" width="355" height="535" rx="10" fill="#0f172a" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1392" y="148" text-anchor="middle" font-size="16" font-weight="700" fill="#f59e0b">Generated Image</text>
+  <line x1="1228" y1="158" x2="1557" y2="158" stroke="#78350f" stroke-width="1"/>
 
-  <!-- Generated Image -->
-  <rect x="730" y="155" width="148" height="200" rx="8" fill="#1a1f2e" stroke="#f59e0b" stroke-width="2"/>
-  <text x="804" y="180" text-anchor="middle" font-size="13" font-weight="bold" fill="#f59e0b">🖼 Generated Image</text>
-  <line x1="742" y1="190" x2="866" y2="190" stroke="#2d3148" stroke-width="1"/>
-  <!-- mock image preview -->
-  <rect x="752" y="198" width="104" height="80" rx="4" fill="#0d1117" stroke="#374151" stroke-width="1"/>
-  <text x="804" y="240" text-anchor="middle" font-size="28" fill="#374151">👤</text>
-  <text x="804" y="295" text-anchor="middle" font-size="11" fill="#d1d5db">1792 × 2400 px</text>
-  <text x="804" y="311" text-anchor="middle" font-size="11" fill="#d1d5db">2K · JPEG</text>
-  <text x="804" y="327" text-anchor="middle" font-size="11" fill="#6b7280">images/output.jpg</text>
-  <text x="804" y="345" text-anchor="middle" font-size="10" fill="#6b7280">~500 KB – 3.5 MB</text>
+  <!-- Image placeholder box -->
+  <rect x="1240" y="168" width="325" height="205" rx="6" fill="url(#img-grad)" stroke="#334155" stroke-width="1"/>
+  <!-- Person silhouette -->
+  <circle cx="1402" cy="232" r="42" fill="#1e3a5f" stroke="#2d4a7a" stroke-width="1.5"/>
+  <path d="M1310,373 Q1332,295 1402,295 Q1472,295 1494,373 Z" fill="#1e3a5f" stroke="#2d4a7a" stroke-width="1.5"/>
+  <text x="1402" y="355" text-anchor="middle" font-size="10" fill="#475569">GENERATED OUTPUT</text>
 
-  <!-- ══════════════════════════════
-       ENV / CONFIG LEGEND (bottom)
-       ══════════════════════════════ -->
-  <rect x="20" y="510" width="650" height="110" rx="8" fill="#13151f" stroke="#2d3148" stroke-width="1"/>
-  <text x="40" y="533" font-size="11" font-weight="bold" fill="#6b7280" letter-spacing="1">ENVIRONMENT VARIABLES</text>
+  <!-- Output specs -->
+  <text x="1392" y="398" text-anchor="middle" font-size="13" font-weight="600" fill="#22c55e">Kie.ai output</text>
+  <text x="1392" y="416" text-anchor="middle" font-size="12" fill="#94a3b8">1792 × 2400 px · 2K · JPEG</text>
+  <text x="1392" y="434" text-anchor="middle" font-size="11" fill="#64748b">~500 KB – 3.5 MB per image</text>
 
-  <!-- KIE -->
-  <rect x="35" y="543" width="130" height="28" rx="4" fill="#0f2320" stroke="#22c55e" stroke-width="1"/>
-  <text x="100" y="561" text-anchor="middle" font-size="10" fill="#22c55e">KIE_API_KEY</text>
-  <text x="100" y="573" text-anchor="middle" font-size="9" fill="#6b7280">required for Kie.ai</text>
+  <line x1="1240" y1="448" x2="1557" y2="448" stroke="#1e293b" stroke-width="1"/>
 
-  <!-- HF -->
-  <rect x="185" y="543" width="130" height="28" rx="4" fill="#1f1313" stroke="#f87171" stroke-width="1"/>
-  <text x="250" y="561" text-anchor="middle" font-size="10" fill="#f87171">HF_TOKEN</text>
-  <text x="250" y="573" text-anchor="middle" font-size="9" fill="#6b7280">required for HF mode</text>
+  <text x="1392" y="468" text-anchor="middle" font-size="13" font-weight="600" fill="#818cf8">Free backend output</text>
+  <text x="1392" y="486" text-anchor="middle" font-size="12" fill="#94a3b8">1024 × 1024 px · JPEG</text>
 
-  <!-- SDXL free -->
-  <rect x="335" y="543" width="150" height="28" rx="4" fill="#131324" stroke="#818cf8" stroke-width="1"/>
-  <text x="410" y="561" text-anchor="middle" font-size="10" fill="#818cf8">No key needed</text>
-  <text x="410" y="573" text-anchor="middle" font-size="9" fill="#6b7280">Puter.ai + local</text>
+  <line x1="1240" y1="500" x2="1557" y2="500" stroke="#1e293b" stroke-width="1"/>
 
-  <!-- .env note -->
-  <text x="40" y="600" font-size="10" fill="#6b7280">Store keys in </text>
-  <text x="111" y="600" font-size="10" fill="#f59e0b">.env</text>
-  <text x="127" y="600" font-size="10" fill="#6b7280"> file at project root · Never commit to git</text>
+  <text x="1392" y="520" text-anchor="middle" font-size="12" fill="#94a3b8">Saved to  images/output.jpg</text>
+  <text x="1392" y="538" text-anchor="middle" font-size="12" fill="#94a3b8">Version naming for refinement:</text>
+  <text x="1392" y="558" text-anchor="middle" font-size="13" font-weight="600" fill="#f59e0b">v1 → v1b → v1c → v1d</text>
+  <text x="1392" y="576" text-anchor="middle" font-size="11" fill="#64748b">iterate prompt JSON, rerun, compare</text>
 
-  <!-- Prompt note -->
-  <text x="40" y="614" font-size="10" fill="#6b7280">Prompts live in </text>
-  <text x="122" y="614" font-size="10" fill="#4f6ef7">prompts/*.json</text>
-  <text x="202" y="614" font-size="10" fill="#6b7280"> · Reference images in </text>
-  <text x="330" y="614" font-size="10" fill="#f59e0b">images/</text>
-  <text x="370" y="614" font-size="10" fill="#6b7280"> · Output saved to </text>
-  <text x="466" y="614" font-size="10" fill="#f59e0b">images/</text>
+  <line x1="1240" y1="590" x2="1557" y2="590" stroke="#1e293b" stroke-width="1"/>
 
-  <!-- ══════════════════════════════
-       ARROWHEAD MARKERS
-       ══════════════════════════════ -->
-  <defs>
-    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#4f6ef7"/>
-    </marker>
-    <marker id="arr-amber" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"/>
-    </marker>
-    <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
-    </marker>
-    <marker id="arr-indigo" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#818cf8"/>
-    </marker>
-    <marker id="arr-violet" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#a78bfa"/>
-    </marker>
-    <marker id="arr-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#f87171"/>
-    </marker>
-  </defs>
+  <text x="1392" y="610" text-anchor="middle" font-size="11" fill="#64748b">⚠  Dashed arrow = limited availability</text>
+  <text x="1392" y="628" text-anchor="middle" font-size="11" fill="#f59e0b">Reference image: Kie.ai only</text>
+  <text x="1392" y="644" text-anchor="middle" font-size="11" fill="#64748b">Text prompt: all backends</text>
+
+  <!-- ═══════════════════════════════════════════
+       ENVIRONMENT VARIABLES LEGEND
+       ═══════════════════════════════════════════ -->
+  <rect x="30" y="672" width="1540" height="178" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="50" y="698" font-size="11" font-weight="700" fill="#475569" letter-spacing="2">ENVIRONMENT VARIABLES &amp; CONFIGURATION</text>
+
+  <!-- KIE_API_KEY -->
+  <rect x="50"  y="710" width="230" height="70" rx="8" fill="#052e16" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="165" y="733" text-anchor="middle" font-size="13" font-weight="700" fill="#22c55e">KIE_API_KEY</text>
+  <text x="165" y="751" text-anchor="middle" font-size="11" fill="#86efac">Required for Kie.ai</text>
+  <text x="165" y="768" text-anchor="middle" font-size="10" fill="#64748b">kie.ai → account → API keys</text>
+
+  <!-- HF_TOKEN -->
+  <rect x="300" y="710" width="230" height="70" rx="8" fill="#2d0a0a" stroke="#f87171" stroke-width="1.5"/>
+  <text x="415" y="733" text-anchor="middle" font-size="13" font-weight="700" fill="#f87171">HF_TOKEN</text>
+  <text x="415" y="751" text-anchor="middle" font-size="11" fill="#fca5a5">Required for HF mode</text>
+  <text x="415" y="768" text-anchor="middle" font-size="10" fill="#64748b">huggingface.co → settings → tokens</text>
+
+  <!-- No key -->
+  <rect x="550" y="710" width="230" height="70" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="665" y="733" text-anchor="middle" font-size="13" font-weight="700" fill="#818cf8">No key needed</text>
+  <text x="665" y="751" text-anchor="middle" font-size="11" fill="#c7d2fe">Puter.ai + Local</text>
+  <text x="665" y="768" text-anchor="middle" font-size="10" fill="#64748b">generate_sdxl.py · generate_local.py</text>
+
+  <!-- Notes -->
+  <text x="830" y="726" font-size="12" fill="#94a3b8">Store all keys in</text>
+  <text x="934" y="726" font-size="12" fill="#f59e0b" font-weight="600">.env</text>
+  <text x="962" y="726" font-size="12" fill="#94a3b8">at project root — never commit to git</text>
+
+  <text x="830" y="748" font-size="12" fill="#94a3b8">Prompts in</text>
+  <text x="904" y="748" font-size="12" fill="#4f6ef7" font-weight="600">prompts/*.json</text>
+  <text x="1015" y="748" font-size="12" fill="#94a3b8">· Reference images and output in</text>
+  <text x="1248" y="748" font-size="12" fill="#f59e0b" font-weight="600">images/</text>
+
+  <text x="830" y="770" font-size="12" fill="#94a3b8">Run with:</text>
+  <text x="888" y="770" font-size="12" fill="#e2e8f0" font-weight="600">python scripts/generate_kie.py prompts/my_prompt.json images/output.jpg</text>
+
+  <text x="830" y="791" font-size="12" fill="#94a3b8">Install deps:</text>
+  <text x="904" y="791" font-size="12" fill="#e2e8f0" font-weight="600">pip install -r requirements.txt</text>
+  <text x="1064" y="791" font-size="12" fill="#94a3b8">· Activate venv first if using one</text>
+
+  <text x="830" y="813" font-size="12" fill="#94a3b8">Local backend requires:</text>
+  <text x="980" y="813" font-size="12" fill="#a78bfa" font-weight="600">pip install diffusers transformers torch Pillow</text>
+  <text x="1256" y="813" font-size="12" fill="#94a3b8">· ~5 GB model download on first run</text>
+
+  <text x="830" y="835" font-size="12" fill="#94a3b8">Iterative refinement: edit prompt JSON, rerun script, compare output —</text>
+  <text x="1294" y="835" font-size="12" fill="#f59e0b" font-weight="600">version files as v1, v1b, v1c</text>
 
 </svg>
