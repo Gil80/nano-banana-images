@@ -1,0 +1,9 @@
+{
+  "prompt": "Ultra-realistic documentary-style portrait of a US Air Force F-15 Eagle pilot in full flight gear, standing on the tarmac next to their aircraft. The pilot wears a olive drab flight suit, a HGU-55/P helmet with gold visor reflected in the sunlight, and is looking towards the aircraft with confident posture. Shot with 85mm f/1.8 lens on full-frame camera, shallow depth of field with the F-15 in the background beautifully blurred. Harsh midday desert sunlight creating dramatic shadows on the pilot's face and flight suit. Visible details: weathered skin, slight stubble, minor imperfections, sweat marks on the flight suit from the heat. No beautification filters. Do not alter facial features. Photorealistic, unretouched, documentary quality.",
+  "negative_prompt": "plastic skin, airbrushed texture, skin smoothing, beautification filters, AI-generated face, cartoon, illustration, studio lighting, perfect skin, makeup, filtered look",
+  "api_parameters": {
+    "resolution": "2K",
+    "aspect_ratio": "3:4",
+    "output_format": "jpg"
+  }
+}
