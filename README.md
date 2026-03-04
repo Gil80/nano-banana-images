@@ -2,6 +2,12 @@
 
 An AI image generation toolkit for creating photorealistic images from structured prompts, with support for reference image input to preserve identity and style. Built around the Kie.ai nano-banana-2 model, with fallback support for local and free cloud alternatives.
 
+![Demo](demo/demo.gif)
+
+## Architecture
+
+![Architecture](docs/architecture.svg)
+
 ## What It Does
 
 Submit a JSON prompt file with a detailed text description, optional reference images, and generation parameters — and get back a high-resolution photorealistic image. The toolkit handles image upload, API calls, polling for completion, and downloading the result.
