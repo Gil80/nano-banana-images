@@ -1,6 +1,6 @@
 # nano-banana-images
 
-An AI image generation toolkit for creating photorealistic images from structured prompts, with support for reference image input to preserve identity and style. Built around the Kie.ai nano-banana-2 model, with fallback support for local and free cloud alternatives.
+An AI image generation toolkit for creating photorealistic images from structured prompts, with support for reference image input to preserve identity and style. Supports multiple backends: Kie.ai, Google Gemini API, free cloud SDXL, and local generation.
 
 ![Demo](demo/demo.gif)
 
@@ -19,9 +19,11 @@ Prompts are structured like a photography brief: lens, aperture, lighting, depth
 | Script | Provider | API Key | Quality | Speed |
 |--------|----------|---------|---------|-------|
 | `generate_kie.py` | Kie.ai (nano-banana-2) | Required | Highest | Fast |
+| `generate_gemini.py` | Google Gemini API | Required | Highest | Fast |
 | `generate_sdxl.py` | Puter.ai (SDXL) | None | Good | Fast |
 | `generate_local.py` | Local SDXL (diffusers) | None | Good | Slow |
 | `generate_hf.py` | Hugging Face | Required | Good | Varies |
+| `export_prompt.py` | Gemini web UI (copy/paste) | None | Highest | Manual |
 
 ## Project Structure
 
@@ -29,9 +31,11 @@ Prompts are structured like a photography brief: lens, aperture, lighting, depth
 nano-banana-images/
 ├── scripts/
 │   ├── generate_kie.py       # Primary: Kie.ai nano-banana-2
+│   ├── generate_gemini.py    # Google Gemini API (direct)
 │   ├── generate_sdxl.py      # Free cloud: Puter.ai SDXL
 │   ├── generate_local.py     # Free local: SDXL via diffusers
-│   └── generate_hf.py        # Hugging Face Spaces
+│   ├── generate_hf.py        # Hugging Face Spaces
+│   └── export_prompt.py      # Export prompt for Gemini web UI
 ├── prompts/
 │   └── *.json                # Structured prompt definitions
 ├── images/
@@ -59,6 +63,18 @@ Run with a prompt file:
 
 ```bash
 python scripts/generate_kie.py prompts/pilot_f15e.json images/output.jpg
+```
+
+Or use Google Gemini API directly:
+
+```bash
+python scripts/generate_gemini.py prompts/pilot_f15e.json images/output.jpg
+```
+
+Or export the prompt as plain text for Gemini's web UI:
+
+```bash
+python scripts/export_prompt.py prompts/pilot_f15e.json
 ```
 
 Or use a free backend with no API key:
@@ -108,6 +124,7 @@ Prompts are JSON files that act as a photography brief:
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `KIE_API_KEY` | For Kie.ai | Kie.ai API key |
+| `GEMINI_API_KEY` | For Gemini API | Google AI Studio API key |
 | `HF_TOKEN` | For HF mode | Hugging Face token |
 
 ## License
