@@ -86,9 +86,9 @@ python scripts/export_prompt.py prompts/woman_jumping_joy.json
 
 Restore and enhance scanned vintage film photographs — upscale to 4K, sharpen, color-correct, and remove artifacts without altering content.
 
-### How Restoration Works
+### What Restoration Does
 
-The project includes pre-built restoration prompts that instruct the model to:
+The restoration prompt instructs the model to:
 
 1. **Analyze** — evaluate resolution, sharpness, noise, color balance, grain, dust/scratches
 2. **Upscale to 4K** — 3840px long edge, maintain aspect ratio, reconstruct detail from existing pixels only
@@ -98,16 +98,20 @@ The project includes pre-built restoration prompts that instruct the model to:
 
 Strict constraints are enforced: no content alteration, no hallucinated details, no composition changes. The model can only upscale, sharpen, color-correct, and remove artifacts.
 
-### Restoration Prompt Files
+### How to Restore an Image
 
-| File | Format | Use With |
-|------|--------|----------|
-| `prompts/image_restoration.json` | Structured JSON | API backends (`generate_kie.py`, `generate_gemini.py`) |
-| `prompts/image_restoration_plain_text.txt` | Plain text | Copy/paste into Gemini web UI |
+Tell Claude Code (with the `nano-banana-image-restoration` skill) that you want to restore a photo:
 
-### Running Restoration
+> "Restore this scanned family photo: images/old_family_photo.jpg"
 
-**Via API** — Add your source image path to the `image_input` array in `image_restoration.json`, then run:
+The tool asks which restoration method you want to use:
+
+- **API** (Kie.ai, Gemini API) — the tool adds your source image to the `image_input` array in `prompts/image_restoration.json`, then runs the generation script to restore the image and save it to `images/`
+- **Gemini web UI** — the tool provides the structured plain-text restoration prompt from `prompts/image_restoration_plain_text.txt` for you to copy/paste into [gemini.google.com](https://gemini.google.com) alongside your uploaded photo
+
+### Path A: API Restoration (automated)
+
+The tool updates `image_restoration.json` with your source image path and runs the script:
 
 ```bash
 # Via Kie.ai
@@ -117,11 +121,21 @@ python scripts/generate_kie.py prompts/image_restoration.json images/restored_ou
 python scripts/generate_gemini.py prompts/image_restoration.json images/restored_output.png
 ```
 
-**Via Gemini web UI** — Copy the contents of `prompts/image_restoration_plain_text.txt`, go to [gemini.google.com](https://gemini.google.com), upload your scanned photo, and paste the prompt text alongside it.
+Output: PNG at 4K resolution saved to `images/`.
 
-### Restoration Output
+### Path B: Gemini Web UI Restoration (manual, free, no API key)
 
-PNG at 4K resolution. Every element of the original photo is preserved — only enhancement operations are applied.
+1. Go to [gemini.google.com](https://gemini.google.com)
+2. Upload your scanned photo
+3. Paste the contents of `prompts/image_restoration_plain_text.txt` alongside it
+4. Download the restored image from Gemini's response
+
+### Restoration Prompt Files
+
+| File | Format | Use With |
+|------|--------|----------|
+| `prompts/image_restoration.json` | Structured JSON | API backends (`generate_kie.py`, `generate_gemini.py`) |
+| `prompts/image_restoration_plain_text.txt` | Plain text | Copy/paste into Gemini web UI |
 
 ## Backends
 
