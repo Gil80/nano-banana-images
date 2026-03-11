@@ -2,6 +2,16 @@
 
 An AI image generation and restoration toolkit that turns natural language descriptions into photorealistic images using structured JSON prompts. Supports multiple backends: Kie.ai, Google Gemini API, free cloud SDXL, and local generation.
 
+## Demos
+
+**API path** — natural language → structured JSON → API call → image saved:
+
+![API Path Demo](demo/demo_api_path.gif)
+
+**Gemini web UI path** — natural language → structured plain text → paste into Gemini:
+
+![Gemini UI Path Demo](demo/demo_gemini_ui_path.gif)
+
 ## Architecture
 
 ![Architecture](docs/architecture.svg)
@@ -168,7 +178,8 @@ nano-banana-images/
 ├── images/
 │   └── *.jpg / *.png                      # Reference inputs + generated outputs
 ├── demo/
-│   └── demo.gif                           # Terminal demo recording
+│   ├── demo_api_path.gif                  # Demo: API path workflow
+│   └── demo_gemini_ui_path.gif            # Demo: Gemini web UI path workflow
 ├── docs/
 │   └── architecture.svg                   # Architecture diagram
 ├── .env                                   # API keys (not committed)
