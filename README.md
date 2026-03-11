@@ -26,6 +26,8 @@ Tell Claude Code (or any AI assistant with the `nano-banana-images` skill) what 
 
 > "Create a candid photo of a woman jumping in the air with joy in a park, golden afternoon light, shallow depth of field"
 
+The tool consults [`prompts/master_prompt_reference.md`](prompts/master_prompt_reference.md) — the master reference guide that defines the JSON schema, photography parameters, and quality standards — to construct a prompt that produces hyper-realistic results.
+
 ### Step 2: Choose Your Output Path
 
 The tool asks which generation method you want to use:
@@ -180,6 +182,7 @@ nano-banana-images/
 │   ├── generate_hf.py                     # Hugging Face Spaces
 │   └── export_prompt.py                   # Convert JSON prompt → plain text
 ├── prompts/
+│   ├── master_prompt_reference.md         # Master reference: schema, best practices, quality standards
 │   ├── image_restoration.json             # Restoration prompt (for API backends)
 │   ├── image_restoration_plain_text.txt   # Restoration prompt (for Gemini web UI)
 │   └── *.json                             # Image generation prompts
@@ -232,7 +235,7 @@ Version your prompts to track improvements: `prompt_v1.json` → `prompt_v1b.jso
 
 ## Prompt JSON Schema
 
-All JSON prompts follow this structure:
+All JSON prompts follow this structure. For the full schema breakdown, best practices, and advanced options (multi-panel grids, ControlNet, structural preservation), see [`prompts/master_prompt_reference.md`](prompts/master_prompt_reference.md).
 
 | Field | Required | Description |
 |-------|----------|-------------|
@@ -244,9 +247,19 @@ All JSON prompts follow this structure:
 | `api_parameters.aspect_ratio` | No | e.g. `"3:4"`, `"16:9"`, `"4:5"`, `"auto"` |
 | `settings` | No | Metadata for style, lighting, camera angle, depth of field, quality |
 
+### Master Prompt Reference
+
+The [`master_prompt_reference.md`](prompts/master_prompt_reference.md) file is the quality standard for all prompts. The tool reads it every time a prompt is constructed to ensure:
+
+- **Camera mathematics** — exact focal length, aperture, and ISO (e.g., `85mm lens, f/2.0, ISO 200`) force the model to mimic optical physics
+- **Explicit imperfections** — dictated flaws like `mild redness`, `subtle freckles`, `visible pores` prevent plastic/smoothed output
+- **Lighting behavior** — not just naming the light, but describing what it does (e.g., `creating sharp highlights on skin and a slightly shadowed background`)
+- **Mandatory negative stack** — extensive blocklist forbidding `skin smoothing`, `anatomy normalization`, `beautification filters`, etc.
+- **Material physics** — for non-human subjects, surface scoring, light scattering, and texture specifics replace skin/outfit logic
+
 ## Key Concepts
 
-- **Prompt creation first** — you describe what you want in natural language, choose your output path (API or Gemini web UI), and the tool constructs the appropriate structured prompt (JSON or plain text) with photography parameters, negative constraints, and generation settings
+- **Prompt creation first** — you describe what you want in natural language, choose your output path (API or Gemini web UI), and the tool consults the [master prompt reference](prompts/master_prompt_reference.md) to construct the appropriate structured prompt (JSON or plain text) with photography parameters, negative constraints, and generation settings
 - **Reference image input** — provide a portrait and the model preserves facial features, style, or composition in the generated output
 - **Image restoration** — provide a scanned vintage photo and the model upscales, sharpens, color-corrects, and removes artifacts without altering content
 - **Structured prompts** — JSON format with explicit photography settings (focal length, aperture, lighting direction) neutralizes AI model biases and produces consistent results

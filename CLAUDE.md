@@ -16,6 +16,11 @@ AI image generation toolkit using structured JSON prompts with multiple backends
 - Free alternative: `python scripts/generate_sdxl.py "<prompt>" images/output.jpg`
 - Gemini direct: `python scripts/generate_gemini.py prompts/<file>.json images/output.jpg`
 
+## Prompt Construction
+- **Always consult `prompts/master_prompt_reference.md`** before constructing any prompt (generation or restoration). It defines the JSON schema, best practices, and quality standards for producing hyper-realistic outputs.
+- The reference guide covers: camera mathematics (lens, aperture, ISO), explicit imperfections, lighting behavior, material physics, negative prompt stacks, and the Dense Narrative vs Deep Grid paradigms.
+- Every generated prompt must follow the patterns and quality bar set by the master reference.
+
 ## Conventions
 - Use `pathlib` for file paths
 - Use `python-dotenv` for env vars
