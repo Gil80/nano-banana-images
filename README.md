@@ -24,7 +24,9 @@ You describe what you want in plain English, the tool asks how you want to gener
 
 Tell Claude Code (or any AI assistant with the `nano-banana-images` skill) what image you want:
 
-> "Create a candid photo of a woman jumping in the air with joy in a park, golden afternoon light, shallow depth of field"
+> "Create a candid photo of a woman jumping in the air with joy in a park, golden afternoon light, shallow depth of field, 2K resolution"
+
+Always include the desired **image resolution** in your request: `1K`, `2K`, or `4K`. This sets the output size in the prompt's `api_parameters.resolution` field.
 
 The tool consults [`prompts/master_prompt_reference.md`](prompts/master_prompt_reference.md) — the master reference guide that defines the JSON schema, photography parameters, and quality standards — to construct a prompt that produces hyper-realistic results.
 
@@ -122,7 +124,9 @@ Strict constraints are enforced: no content alteration, no hallucinated details,
 
 Tell Claude Code (with the `nano-banana-image-restoration` skill) that you want to restore a photo:
 
-> "Restore this scanned family photo: images/old_family_photo.jpg"
+> "Restore this scanned family photo: images/old_family_photo.jpg, 4K resolution"
+
+Always include the desired **output resolution** in your request: `1K`, `2K`, or `4K`. Restoration defaults to 4K (3840px long edge) but you can request a lower resolution if needed.
 
 The tool asks which restoration method you want to use:
 
