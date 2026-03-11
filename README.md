@@ -112,9 +112,50 @@ Prompts are JSON files that act as a photography brief:
 5. Download result image
 ```
 
+## Image Restoration
+
+Restore and enhance scanned vintage film photographs — upscale, sharpen, color-correct, and remove artifacts without altering content.
+
+### What It Does
+
+Takes a scanned family photo and applies:
+1. **Analysis** — evaluates resolution, sharpness, noise, color balance, grain, dust/scratches
+2. **4K upscale** — 3840px long edge, maintains aspect ratio, reconstructs detail from existing pixels
+3. **Sharpening** — unsharp mask + detail recovery, restores edge crispness and micro-contrast
+4. **Color correction** — neutralizes aged film dye color casts, restores white balance, recovers shadow/highlight detail
+5. **Artifact removal** — removes film grain, dust specks, scratches, and scanning artifacts
+
+Strict constraints: no content alteration, no hallucinated details, no composition changes.
+
+### Prompt Files
+
+| File | Use With |
+|------|----------|
+| `prompts/image_restoration.json` | API backends (`generate_kie.py`, `generate_gemini.py`) |
+| `prompts/image_restoration_plain_text.txt` | Copy/paste into Gemini web UI |
+
+### Usage
+
+**Via Kie.ai API** (add your source image to `image_input` array in the JSON first):
+```bash
+python scripts/generate_kie.py prompts/image_restoration.json images/restored_output.png
+```
+
+**Via Google Gemini API**:
+```bash
+python scripts/generate_gemini.py prompts/image_restoration.json images/restored_output.png
+```
+
+**Via Gemini web UI**: Copy the contents of `prompts/image_restoration_plain_text.txt`, paste into [Gemini](https://gemini.google.com), and upload your photo alongside the prompt.
+
+### Output
+
+PNG at 4K resolution. The restored image preserves every element of the original — only upscaling, sharpening, color correction, and artifact removal are applied.
+
 ## Key Concepts
 
 - **Reference image input** — provide a portrait or photo and the model preserves facial features, style, or composition in the generated output
+- **Image restoration** — provide a scanned vintage photo and the model upscales, sharpens, color-corrects, and removes artifacts without altering content
 - **Structured prompts** — JSON format with explicit photography settings (focal length, aperture, lighting direction) for reproducible, controllable results
 - **Iterative refinement** — version your prompt files (`v1`, `v1b`, `v1c`) to track what changes improve output quality
 - **Multi-backend** — swap providers without changing your prompt files
