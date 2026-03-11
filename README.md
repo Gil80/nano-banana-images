@@ -8,15 +8,26 @@ An AI image generation and restoration toolkit that turns natural language descr
 
 ## How It Works
 
-This project has two phases: **prompt creation** and **image generation**. You don't write the JSON prompts by hand — you describe what you want in plain English, and an AI assistant (Claude Code, Gemini, etc.) constructs the structured prompt for you.
+You describe what you want in plain English, the tool asks how you want to generate the image, and then creates the right prompt format for your chosen path.
 
-### Phase 1: Create a Structured Prompt
+### Step 1: Describe What You Want
 
-Tell Claude Code (or any AI assistant with the `nano-banana-images` skill) what image you want. For example:
+Tell Claude Code (or any AI assistant with the `nano-banana-images` skill) what image you want:
 
 > "Create a candid photo of a woman jumping in the air with joy in a park, golden afternoon light, shallow depth of field"
 
-The assistant constructs a detailed JSON prompt file with explicit photography parameters — lens, aperture, ISO, lighting direction, depth of field, skin texture, negative constraints — and saves it to `prompts/`:
+### Step 2: Choose Your Output Path
+
+The tool asks which generation method you want to use:
+
+- **API** (Kie.ai, Gemini API, etc.) — the tool creates a **structured JSON prompt** saved to `prompts/`, then runs the generation script to call the API, generate the image, and save it to `images/`
+- **Gemini web UI** — the tool creates a **structured plain-text prompt** that you copy/paste directly into [gemini.google.com](https://gemini.google.com)
+
+Both paths produce the same level of detail — explicit photography parameters (lens, aperture, ISO, lighting direction, depth of field, skin texture) and negative constraints that neutralize AI model biases (over-smoothing, "plastic" skin, dataset-averaging).
+
+### Path A: API Generation (automated)
+
+The tool creates a structured JSON prompt and saves it to `prompts/`:
 
 ```json
 {
@@ -39,13 +50,7 @@ The assistant constructs a detailed JSON prompt file with explicit photography p
 }
 ```
 
-This level of structure neutralizes AI model biases (over-smoothing, "plastic" skin, dataset-averaging) and produces consistent, hyper-realistic results.
-
-**For Gemini web UI users**: The assistant can also output a plain-text version of the prompt (or you can convert an existing JSON prompt using `export_prompt.py`). You then copy/paste this text directly into [Gemini](https://gemini.google.com).
-
-### Phase 2: Generate the Image
-
-Once the JSON prompt exists, run one of the generation scripts to send it to an API backend:
+Then runs the generation script:
 
 ```bash
 # Via Kie.ai API (highest quality)
@@ -62,16 +67,20 @@ The script:
 4. Polls for completion (Kie.ai) or waits for response (Gemini)
 5. Downloads and saves the generated image to `images/`
 
-### Alternative: Gemini Web UI (free, no API key)
+### Path B: Gemini Web UI (manual, free, no API key)
 
-If you don't have an API key, you can use the prompt with Gemini's web interface:
+The tool creates a structured plain-text prompt with the same photography parameters and negative constraints. You then:
+
+1. Go to [gemini.google.com](https://gemini.google.com)
+2. Paste the prompt text into the chat
+3. Upload any reference images alongside the text
+4. Download the generated image from Gemini's response
+
+You can also convert an existing JSON prompt to plain text using `export_prompt.py`:
 
 ```bash
-# Convert JSON prompt to plain text
 python scripts/export_prompt.py prompts/woman_jumping_joy.json
 ```
-
-Copy the output text, go to [gemini.google.com](https://gemini.google.com), and paste it in. If you have reference images, upload them alongside the text.
 
 ## Image Restoration
 
@@ -172,28 +181,15 @@ KIE_API_KEY=your_key_here
 GEMINI_API_KEY=your_key_here
 ```
 
-### 3. Create a prompt
+### 3. Describe what you want and choose a path
 
-Ask Claude Code (with the `nano-banana-images` skill) to create a structured prompt:
+Ask Claude Code (with the `nano-banana-images` skill) to create an image:
 
-> "Generate a prompt for a candid portrait of a woman jumping with joy in a park"
+> "Create a candid portrait of a woman jumping with joy in a park"
 
-Claude will construct the JSON and save it to `prompts/your_prompt.json`.
+The tool will ask whether you want to generate via **API** or **Gemini web UI**, then create the appropriate structured prompt (JSON or plain text) and either run the generation script or output the text for you to paste.
 
-Or for restoration, the prompts are already provided — just add your source image path to `image_restoration.json`.
-
-### 4. Generate the image
-
-```bash
-# Image generation
-python scripts/generate_kie.py prompts/your_prompt.json images/output.jpg
-
-# Image restoration
-python scripts/generate_kie.py prompts/image_restoration.json images/restored.png
-
-# Or use Gemini API for either
-python scripts/generate_gemini.py prompts/your_prompt.json images/output.jpg
-```
+For restoration, the prompts are already provided — just add your source image path to `image_restoration.json` and run the script, or copy `image_restoration_plain_text.txt` into Gemini web UI.
 
 ### 5. Iterate
 
@@ -215,7 +211,7 @@ All JSON prompts follow this structure:
 
 ## Key Concepts
 
-- **Prompt creation first** — you describe what you want in natural language; the AI assistant constructs the structured JSON with photography parameters, negative constraints, and API settings
+- **Prompt creation first** — you describe what you want in natural language, choose your output path (API or Gemini web UI), and the tool constructs the appropriate structured prompt (JSON or plain text) with photography parameters, negative constraints, and generation settings
 - **Reference image input** — provide a portrait and the model preserves facial features, style, or composition in the generated output
 - **Image restoration** — provide a scanned vintage photo and the model upscales, sharpens, color-corrects, and removes artifacts without altering content
 - **Structured prompts** — JSON format with explicit photography settings (focal length, aperture, lighting direction) neutralizes AI model biases and produces consistent results
