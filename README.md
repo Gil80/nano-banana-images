@@ -1,50 +1,160 @@
 # nano-banana-images
 
-An AI image generation toolkit for creating photorealistic images from structured prompts, with support for reference image input to preserve identity and style. Supports multiple backends: Kie.ai, Google Gemini API, free cloud SDXL, and local generation.
-
-![Demo](demo/demo.gif)
+An AI image generation and restoration toolkit that turns natural language descriptions into photorealistic images using structured JSON prompts. Supports multiple backends: Kie.ai, Google Gemini API, free cloud SDXL, and local generation.
 
 ## Architecture
 
 ![Architecture](docs/architecture.svg)
 
-## What It Does
+## How It Works
 
-Submit a JSON prompt file with a detailed text description, optional reference images, and generation parameters — and get back a high-resolution photorealistic image. The toolkit handles image upload, API calls, polling for completion, and downloading the result.
+This project has two phases: **prompt creation** and **image generation**. You don't write the JSON prompts by hand — you describe what you want in plain English, and an AI assistant (Claude Code, Gemini, etc.) constructs the structured prompt for you.
 
-Prompts are structured like a photography brief: lens, aperture, lighting, depth of field, negative constraints. This level of detail produces consistent, high-quality outputs and enables iterative refinement across versions.
+### Phase 1: Create a Structured Prompt
+
+Tell Claude Code (or any AI assistant with the `nano-banana-images` skill) what image you want. For example:
+
+> "Create a candid photo of a woman jumping in the air with joy in a park, golden afternoon light, shallow depth of field"
+
+The assistant constructs a detailed JSON prompt file with explicit photography parameters — lens, aperture, ISO, lighting direction, depth of field, skin texture, negative constraints — and saves it to `prompts/`:
+
+```json
+{
+  "prompt": "Candid documentary-style photograph of a woman in her late 20s mid-jump..., 35mm lens at f/2.8, ISO 400, 1/1000s shutter speed...",
+  "negative_prompt": "plastic skin, skin smoothing, airbrushed texture, beauty filter, studio lighting...",
+  "image_input": [],
+  "api_parameters": {
+    "resolution": "2K",
+    "output_format": "jpg",
+    "aspect_ratio": "4:5"
+  },
+  "settings": {
+    "resolution": "2K",
+    "style": "documentary realism, candid photography",
+    "lighting": "natural afternoon daylight, warm directional",
+    "camera_angle": "slightly below eye level, 35mm lens f/2.8 ISO 400",
+    "depth_of_field": "shallow, subject sharp, background bokeh",
+    "quality": "high detail, unretouched, authentic motion"
+  }
+}
+```
+
+This level of structure neutralizes AI model biases (over-smoothing, "plastic" skin, dataset-averaging) and produces consistent, hyper-realistic results.
+
+**For Gemini web UI users**: The assistant can also output a plain-text version of the prompt (or you can convert an existing JSON prompt using `export_prompt.py`). You then copy/paste this text directly into [Gemini](https://gemini.google.com).
+
+### Phase 2: Generate the Image
+
+Once the JSON prompt exists, run one of the generation scripts to send it to an API backend:
+
+```bash
+# Via Kie.ai API (highest quality)
+python scripts/generate_kie.py prompts/woman_jumping_joy.json images/output.jpg
+
+# Via Google Gemini API
+python scripts/generate_gemini.py prompts/woman_jumping_joy.json images/output.jpg
+```
+
+The script:
+1. Loads the JSON prompt
+2. Uploads any reference images (if `image_input` is provided)
+3. Sends the prompt to the API
+4. Polls for completion (Kie.ai) or waits for response (Gemini)
+5. Downloads and saves the generated image to `images/`
+
+### Alternative: Gemini Web UI (free, no API key)
+
+If you don't have an API key, you can use the prompt with Gemini's web interface:
+
+```bash
+# Convert JSON prompt to plain text
+python scripts/export_prompt.py prompts/woman_jumping_joy.json
+```
+
+Copy the output text, go to [gemini.google.com](https://gemini.google.com), and paste it in. If you have reference images, upload them alongside the text.
+
+## Image Restoration
+
+Restore and enhance scanned vintage film photographs — upscale to 4K, sharpen, color-correct, and remove artifacts without altering content.
+
+### How Restoration Works
+
+The project includes pre-built restoration prompts that instruct the model to:
+
+1. **Analyze** — evaluate resolution, sharpness, noise, color balance, grain, dust/scratches
+2. **Upscale to 4K** — 3840px long edge, maintain aspect ratio, reconstruct detail from existing pixels only
+3. **Sharpen** — unsharp mask + detail recovery, restore edge crispness, enhance micro-contrast
+4. **Color correct** — neutralize aged film dye color casts, restore white balance, recover shadow/highlight detail
+5. **Remove artifacts** — film grain, dust specks, scratches, and scanning artifacts
+
+Strict constraints are enforced: no content alteration, no hallucinated details, no composition changes. The model can only upscale, sharpen, color-correct, and remove artifacts.
+
+### Restoration Prompt Files
+
+| File | Format | Use With |
+|------|--------|----------|
+| `prompts/image_restoration.json` | Structured JSON | API backends (`generate_kie.py`, `generate_gemini.py`) |
+| `prompts/image_restoration_plain_text.txt` | Plain text | Copy/paste into Gemini web UI |
+
+### Running Restoration
+
+**Via API** — Add your source image path to the `image_input` array in `image_restoration.json`, then run:
+
+```bash
+# Via Kie.ai
+python scripts/generate_kie.py prompts/image_restoration.json images/restored_output.png
+
+# Via Gemini API
+python scripts/generate_gemini.py prompts/image_restoration.json images/restored_output.png
+```
+
+**Via Gemini web UI** — Copy the contents of `prompts/image_restoration_plain_text.txt`, go to [gemini.google.com](https://gemini.google.com), upload your scanned photo, and paste the prompt text alongside it.
+
+### Restoration Output
+
+PNG at 4K resolution. Every element of the original photo is preserved — only enhancement operations are applied.
 
 ## Backends
 
-| Script | Provider | API Key | Quality | Speed |
-|--------|----------|---------|---------|-------|
-| `generate_kie.py` | Kie.ai (nano-banana-2) | Required | Highest | Fast |
-| `generate_gemini.py` | Google Gemini API | Required | Highest | Fast |
-| `generate_sdxl.py` | Puter.ai (SDXL) | None | Good | Fast |
-| `generate_local.py` | Local SDXL (diffusers) | None | Good | Slow |
-| `generate_hf.py` | Hugging Face | Required | Good | Varies |
-| `export_prompt.py` | Gemini web UI (copy/paste) | None | Highest | Manual |
+| Script | Provider | API Key | Prompt Input | Quality | Speed |
+|--------|----------|---------|--------------|---------|-------|
+| `generate_kie.py` | Kie.ai (nano-banana-2) | `KIE_API_KEY` | JSON file | Highest | Fast |
+| `generate_gemini.py` | Google Gemini API | `GEMINI_API_KEY` | JSON file | Highest | Fast |
+| `generate_sdxl.py` | Puter.ai (SDXL) | None | Plain text string | Good | Fast |
+| `generate_local.py` | Local SDXL (diffusers) | None | Plain text string | Good | Slow |
+| `generate_hf.py` | Hugging Face | `HF_TOKEN` | Plain text string | Good | Varies |
+| `export_prompt.py` | Gemini web UI (copy/paste) | None | JSON file → text | Highest | Manual |
+
+**Note:** `generate_sdxl.py`, `generate_local.py`, and `generate_hf.py` accept a plain text prompt string (not a JSON file). For these backends, you can extract the prompt text from a JSON file or write it directly.
 
 ## Project Structure
 
 ```
 nano-banana-images/
 ├── scripts/
-│   ├── generate_kie.py       # Primary: Kie.ai nano-banana-2
-│   ├── generate_gemini.py    # Google Gemini API (direct)
-│   ├── generate_sdxl.py      # Free cloud: Puter.ai SDXL
-│   ├── generate_local.py     # Free local: SDXL via diffusers
-│   ├── generate_hf.py        # Hugging Face Spaces
-│   └── export_prompt.py      # Export prompt for Gemini web UI
+│   ├── generate_kie.py                    # Kie.ai nano-banana-2 API
+│   ├── generate_gemini.py                 # Google Gemini API (direct)
+│   ├── generate_sdxl.py                   # Free cloud SDXL via Puter.ai
+│   ├── generate_local.py                  # Free local SDXL via diffusers
+│   ├── generate_hf.py                     # Hugging Face Spaces
+│   └── export_prompt.py                   # Convert JSON prompt → plain text
 ├── prompts/
-│   └── *.json                # Structured prompt definitions
+│   ├── image_restoration.json             # Restoration prompt (for API backends)
+│   ├── image_restoration_plain_text.txt   # Restoration prompt (for Gemini web UI)
+│   └── *.json                             # Image generation prompts
 ├── images/
-│   └── *.jpg / *.png         # Reference inputs + generated outputs
-├── .env                      # API keys (not committed)
+│   └── *.jpg / *.png                      # Reference inputs + generated outputs
+├── demo/
+│   └── demo.gif                           # Terminal demo recording
+├── docs/
+│   └── architecture.svg                   # Architecture diagram
+├── .env                                   # API keys (not committed)
 └── requirements.txt
 ```
 
 ## Quick Start
+
+### 1. Clone and install
 
 ```bash
 git clone https://github.com/Gil80/nano-banana-images.git
@@ -53,112 +163,64 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Copy `.env.example` to `.env` and add your API key:
+### 2. Configure API keys
+
+Copy `.env.example` to `.env` and add your keys:
 
 ```
 KIE_API_KEY=your_key_here
+GEMINI_API_KEY=your_key_here
 ```
 
-Run with a prompt file:
+### 3. Create a prompt
+
+Ask Claude Code (with the `nano-banana-images` skill) to create a structured prompt:
+
+> "Generate a prompt for a candid portrait of a woman jumping with joy in a park"
+
+Claude will construct the JSON and save it to `prompts/your_prompt.json`.
+
+Or for restoration, the prompts are already provided — just add your source image path to `image_restoration.json`.
+
+### 4. Generate the image
 
 ```bash
-python scripts/generate_kie.py prompts/pilot_f15e.json images/output.jpg
+# Image generation
+python scripts/generate_kie.py prompts/your_prompt.json images/output.jpg
+
+# Image restoration
+python scripts/generate_kie.py prompts/image_restoration.json images/restored.png
+
+# Or use Gemini API for either
+python scripts/generate_gemini.py prompts/your_prompt.json images/output.jpg
 ```
 
-Or use Google Gemini API directly:
+### 5. Iterate
 
-```bash
-python scripts/generate_gemini.py prompts/pilot_f15e.json images/output.jpg
-```
+Version your prompts to track improvements: `prompt_v1.json` → `prompt_v1b.json` → `prompt_v2.json`. Each version refines the parameters based on the output quality.
 
-Or export the prompt as plain text for Gemini's web UI:
+## Prompt JSON Schema
 
-```bash
-python scripts/export_prompt.py prompts/pilot_f15e.json
-```
+All JSON prompts follow this structure:
 
-Or use a free backend with no API key:
-
-```bash
-python scripts/generate_sdxl.py "candid portrait, natural light, 85mm lens" images/output.jpg
-```
-
-## Prompt Format
-
-Prompts are JSON files that act as a photography brief:
-
-```json
-{
-  "prompt": "Detailed photorealistic description, lens, lighting, style...",
-  "negative_prompt": "blurry, watermark, oversaturated, studio lighting...",
-  "image_input": ["images/reference.jpg"],
-  "api_parameters": {
-    "resolution": "2K",
-    "output_format": "jpg",
-    "aspect_ratio": "3:4"
-  }
-}
-```
-
-`image_input` is optional — when provided, the model uses it to preserve identity or style in the output.
-
-## How It Works (Kie.ai flow)
-
-```
-1. Load prompt JSON
-2. Upload reference images → get hosted URLs
-3. Submit generation task → receive task ID
-4. Poll for completion (every 5s, up to 5 min)
-5. Download result image
-```
-
-## Image Restoration
-
-Restore and enhance scanned vintage film photographs — upscale, sharpen, color-correct, and remove artifacts without altering content.
-
-### What It Does
-
-Takes a scanned family photo and applies:
-1. **Analysis** — evaluates resolution, sharpness, noise, color balance, grain, dust/scratches
-2. **4K upscale** — 3840px long edge, maintains aspect ratio, reconstructs detail from existing pixels
-3. **Sharpening** — unsharp mask + detail recovery, restores edge crispness and micro-contrast
-4. **Color correction** — neutralizes aged film dye color casts, restores white balance, recovers shadow/highlight detail
-5. **Artifact removal** — removes film grain, dust specks, scratches, and scanning artifacts
-
-Strict constraints: no content alteration, no hallucinated details, no composition changes.
-
-### Prompt Files
-
-| File | Use With |
-|------|----------|
-| `prompts/image_restoration.json` | API backends (`generate_kie.py`, `generate_gemini.py`) |
-| `prompts/image_restoration_plain_text.txt` | Copy/paste into Gemini web UI |
-
-### Usage
-
-**Via Kie.ai API** (add your source image to `image_input` array in the JSON first):
-```bash
-python scripts/generate_kie.py prompts/image_restoration.json images/restored_output.png
-```
-
-**Via Google Gemini API**:
-```bash
-python scripts/generate_gemini.py prompts/image_restoration.json images/restored_output.png
-```
-
-**Via Gemini web UI**: Copy the contents of `prompts/image_restoration_plain_text.txt`, paste into [Gemini](https://gemini.google.com), and upload your photo alongside the prompt.
-
-### Output
-
-PNG at 4K resolution. The restored image preserves every element of the original — only upscaling, sharpening, color correction, and artifact removal are applied.
+| Field | Required | Description |
+|-------|----------|-------------|
+| `prompt` | Yes | Dense, detailed text description with camera math (lens, aperture, ISO), lighting behavior, skin/texture directives, and negative commands |
+| `negative_prompt` | Yes | Comma-separated list of things to avoid (AI artifacts, beauty filters, CGI, etc.) |
+| `image_input` | No | Array of local file paths to reference images. Used for identity preservation (generation) or as the source photo (restoration) |
+| `api_parameters.resolution` | No | `"1K"`, `"2K"`, or `"4K"` (default: `"1K"`) |
+| `api_parameters.output_format` | No | `"jpg"` or `"png"` (default: `"jpg"`) |
+| `api_parameters.aspect_ratio` | No | e.g. `"3:4"`, `"16:9"`, `"4:5"`, `"auto"` |
+| `settings` | No | Metadata for style, lighting, camera angle, depth of field, quality |
 
 ## Key Concepts
 
-- **Reference image input** — provide a portrait or photo and the model preserves facial features, style, or composition in the generated output
+- **Prompt creation first** — you describe what you want in natural language; the AI assistant constructs the structured JSON with photography parameters, negative constraints, and API settings
+- **Reference image input** — provide a portrait and the model preserves facial features, style, or composition in the generated output
 - **Image restoration** — provide a scanned vintage photo and the model upscales, sharpens, color-corrects, and removes artifacts without altering content
-- **Structured prompts** — JSON format with explicit photography settings (focal length, aperture, lighting direction) for reproducible, controllable results
-- **Iterative refinement** — version your prompt files (`v1`, `v1b`, `v1c`) to track what changes improve output quality
-- **Multi-backend** — swap providers without changing your prompt files
+- **Structured prompts** — JSON format with explicit photography settings (focal length, aperture, lighting direction) neutralizes AI model biases and produces consistent results
+- **Iterative refinement** — version your prompt files (`_v1`, `_v1b`, `_v1c`, `_v2`) to track what changes improve output quality
+- **Multi-backend** — same JSON prompts work across Kie.ai, Gemini API, and Gemini web UI; SDXL backends accept the prompt text directly
 
 ## Environment Variables
 
