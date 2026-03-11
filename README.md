@@ -96,6 +96,14 @@ python scripts/export_prompt.py prompts/woman_jumping_joy.json
 
 Restore and enhance scanned vintage film photographs — upscale to 4K, sharpen, color-correct, and remove artifacts without altering content.
 
+**API path** — provide scanned photo → JSON updated → API restores image:
+
+![Restoration API Demo](demo/demo_restore_api.gif)
+
+**Gemini web UI path** — provide scanned photo → plain text prompt → paste into Gemini:
+
+![Restoration Gemini UI Demo](demo/demo_restore_gemini_ui.gif)
+
 ### What Restoration Does
 
 The restoration prompt instructs the model to:
@@ -178,8 +186,10 @@ nano-banana-images/
 ├── images/
 │   └── *.jpg / *.png                      # Reference inputs + generated outputs
 ├── demo/
-│   ├── demo_api_path.gif                  # Demo: API path workflow
-│   └── demo_gemini_ui_path.gif            # Demo: Gemini web UI path workflow
+│   ├── demo_api_path.gif                  # Demo: image generation via API
+│   ├── demo_gemini_ui_path.gif            # Demo: image generation via Gemini web UI
+│   ├── demo_restore_api.gif               # Demo: image restoration via API
+│   └── demo_restore_gemini_ui.gif         # Demo: image restoration via Gemini web UI
 ├── docs/
 │   └── architecture.svg                   # Architecture diagram
 ├── .env                                   # API keys (not committed)
