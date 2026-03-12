@@ -1,264 +1,251 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 880"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 2160"
      font-family="'Segoe UI', system-ui, Arial, sans-serif">
 
   <defs>
-    <!-- Arrow markers -->
-    <marker id="a-blue"   markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#4f6ef7"/></marker>
-    <marker id="a-amber"  markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#f59e0b"/></marker>
-    <marker id="a-green"  markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#22c55e"/></marker>
-    <marker id="a-indigo" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#818cf8"/></marker>
-    <marker id="a-violet" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#a78bfa"/></marker>
-    <marker id="a-red"    markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#f87171"/></marker>
-    <!-- Drop shadow filter -->
+    <marker id="a-blue"   markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L0,12 L12,6 z" fill="#4f6ef7"/></marker>
+    <marker id="a-amber"  markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L0,12 L12,6 z" fill="#f59e0b"/></marker>
+    <marker id="a-green"  markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L0,12 L12,6 z" fill="#22c55e"/></marker>
+    <marker id="a-cyan"   markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L0,12 L12,6 z" fill="#06b6d4"/></marker>
+    <marker id="a-indigo" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L0,12 L12,6 z" fill="#818cf8"/></marker>
+    <marker id="a-violet" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L0,12 L12,6 z" fill="#a78bfa"/></marker>
+    <marker id="a-red"    markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L0,12 L12,6 z" fill="#f87171"/></marker>
+    <marker id="a-white"  markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L0,12 L12,6 z" fill="#94a3b8"/></marker>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.4"/>
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
     </filter>
-    <!-- Gradient for output image placeholder -->
     <linearGradient id="img-grad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#1e293b"/>
       <stop offset="100%" stop-color="#0d1117"/>
     </linearGradient>
   </defs>
 
-  <!-- ═══════════════════════════════════════════
-       BACKGROUND
-       ═══════════════════════════════════════════ -->
-  <rect width="1600" height="880" fill="#0d1117"/>
+  <!-- BACKGROUND -->
+  <rect width="3840" height="2160" fill="#0d1117"/>
 
-  <!-- ═══════════════════════════════════════════
-       TITLE
-       ═══════════════════════════════════════════ -->
-  <text x="800" y="50" text-anchor="middle" font-size="28" font-weight="700" fill="#f1f5f9">
+  <!-- TITLE -->
+  <text x="1920" y="80" text-anchor="middle" font-size="52" font-weight="700" fill="#f1f5f9">
     nano-banana-images — Architecture
   </text>
-  <text x="800" y="76" text-anchor="middle" font-size="15" fill="#64748b">
-    AI Image Generation Toolkit · Reference-preserving · Multi-backend
+  <text x="1920" y="130" text-anchor="middle" font-size="28" fill="#64748b">
+    AI Image Generation Toolkit · Prompt Creation → Backend Selection → Image Output
   </text>
 
-  <!-- ═══════════════════════════════════════════
-       COLUMN DIVIDERS
-       ═══════════════════════════════════════════ -->
-  <line x1="320"  y1="92" x2="320"  y2="652" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
-  <line x1="745"  y1="92" x2="745"  y2="652" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
-  <line x1="1195" y1="92" x2="1195" y2="652" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
+  <!-- ════════════════════════════════════════════
+       PHASE 1: PROMPT CREATION (left third)
+       ════════════════════════════════════════════ -->
 
-  <!-- ═══════════════════════════════════════════
-       COLUMN HEADERS
-       ═══════════════════════════════════════════ -->
-  <text x="160"  y="100" text-anchor="middle" font-size="11" font-weight="600" fill="#475569" letter-spacing="2">INPUT</text>
-  <text x="532"  y="100" text-anchor="middle" font-size="11" font-weight="600" fill="#475569" letter-spacing="2">SCRIPTS</text>
-  <text x="970"  y="100" text-anchor="middle" font-size="11" font-weight="600" fill="#475569" letter-spacing="2">BACKENDS</text>
-  <text x="1392" y="100" text-anchor="middle" font-size="11" font-weight="600" fill="#475569" letter-spacing="2">OUTPUT</text>
+  <!-- Phase 1 header -->
+  <rect x="60" y="180" width="1160" height="60" rx="12" fill="#1e293b"/>
+  <text x="640" y="220" text-anchor="middle" font-size="26" font-weight="700" fill="#4f6ef7" letter-spacing="3">PHASE 1 — PROMPT CREATION</text>
 
-  <!-- ═══════════════════════════════════════════
-       INPUT COLUMN
-       ═══════════════════════════════════════════ -->
+  <!-- User Input -->
+  <rect x="80" y="280" width="500" height="220" rx="14" fill="#0f172a" stroke="#4f6ef7" stroke-width="3" filter="url(#shadow)"/>
+  <text x="330" y="320" text-anchor="middle" font-size="28" font-weight="700" fill="#4f6ef7">User Input</text>
+  <line x1="100" y1="336" x2="560" y2="336" stroke="#1e3a8a" stroke-width="1"/>
+  <text x="330" y="370" text-anchor="middle" font-size="22" fill="#94a3b8">Natural language description</text>
+  <text x="330" y="400" text-anchor="middle" font-size="20" fill="#64748b">"Create a candid photo of a</text>
+  <text x="330" y="428" text-anchor="middle" font-size="20" fill="#64748b">woman jumping with joy..."</text>
+  <text x="330" y="468" text-anchor="middle" font-size="20" font-weight="600" fill="#f59e0b">+ resolution: 1K / 2K / 4K</text>
 
-  <!-- Prompt JSON -->
-  <rect x="35" y="118" width="250" height="125" rx="10" fill="#0f172a" stroke="#4f6ef7" stroke-width="2" filter="url(#shadow)"/>
-  <text x="160" y="146" text-anchor="middle" font-size="16" font-weight="700" fill="#4f6ef7">Prompt JSON</text>
-  <line x1="48" y1="156" x2="272" y2="156" stroke="#1e3a8a" stroke-width="1"/>
-  <text x="160" y="174" text-anchor="middle" font-size="12" fill="#94a3b8">prompt · negative_prompt</text>
-  <text x="160" y="192" text-anchor="middle" font-size="12" fill="#94a3b8">aspect_ratio · resolution</text>
-  <text x="160" y="210" text-anchor="middle" font-size="11" fill="#4f6ef7">prompts/*.json</text>
-  <text x="160" y="228" text-anchor="middle" font-size="11" fill="#64748b">structured like a photo brief</text>
+  <!-- Master Prompt Reference -->
+  <rect x="80" y="540" width="500" height="160" rx="14" fill="#0f172a" stroke="#f59e0b" stroke-width="3" filter="url(#shadow)"/>
+  <text x="330" y="580" text-anchor="middle" font-size="24" font-weight="700" fill="#f59e0b">Master Prompt Reference</text>
+  <line x1="100" y1="596" x2="560" y2="596" stroke="#78350f" stroke-width="1"/>
+  <text x="330" y="628" text-anchor="middle" font-size="20" fill="#94a3b8">Camera math · Imperfections</text>
+  <text x="330" y="656" text-anchor="middle" font-size="20" fill="#94a3b8">Lighting behavior · Negative stacks</text>
+  <text x="330" y="684" text-anchor="middle" font-size="18" fill="#f59e0b">prompts/master_prompt_reference.md</text>
 
   <!-- Reference Image -->
-  <rect x="35" y="272" width="250" height="110" rx="10" fill="#0f172a" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
-  <text x="160" y="300" text-anchor="middle" font-size="16" font-weight="700" fill="#f59e0b">Reference Image</text>
-  <text x="160" y="318" text-anchor="middle" font-size="12" fill="#fcd34d">optional</text>
-  <line x1="48" y1="326" x2="272" y2="326" stroke="#78350f" stroke-width="1"/>
-  <text x="160" y="344" text-anchor="middle" font-size="12" fill="#94a3b8">local file → uploaded to API</text>
-  <text x="160" y="362" text-anchor="middle" font-size="12" fill="#94a3b8">preserves identity / style</text>
+  <rect x="80" y="740" width="500" height="140" rx="14" fill="#0f172a" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="330" y="780" text-anchor="middle" font-size="24" font-weight="700" fill="#f59e0b">Reference Image</text>
+  <text x="415" y="780" font-size="18" fill="#fcd34d">(optional)</text>
+  <line x1="100" y1="796" x2="560" y2="796" stroke="#78350f" stroke-width="1"/>
+  <text x="330" y="828" text-anchor="middle" font-size="20" fill="#94a3b8">Identity preservation · style matching</text>
+  <text x="330" y="856" text-anchor="middle" font-size="18" fill="#64748b">images/*.jpg / *.png</text>
 
-  <!-- ═══════════════════════════════════════════
-       ARROWS: INPUT → SCRIPTS
-       ═══════════════════════════════════════════ -->
+  <!-- AI Assistant (Claude Code) -->
+  <rect x="660" y="280" width="540" height="600" rx="14" fill="#0f172a" stroke="#22c55e" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="660" y="264" width="180" height="32" rx="8" fill="#22c55e"/>
+  <text x="750" y="286" text-anchor="middle" font-size="16" font-weight="700" fill="#052e16">AI ASSISTANT</text>
+  <text x="930" y="320" text-anchor="middle" font-size="26" font-weight="700" fill="#22c55e">Claude Code</text>
+  <text x="930" y="352" text-anchor="middle" font-size="20" fill="#86efac">nano-banana-images skill</text>
+  <line x1="680" y1="370" x2="1180" y2="370" stroke="#14532d" stroke-width="1"/>
+  <text x="930" y="404" text-anchor="middle" font-size="20" fill="#94a3b8">1. Ask for resolution (1K/2K/4K)</text>
+  <text x="930" y="438" text-anchor="middle" font-size="20" fill="#94a3b8">2. Ask for output path</text>
+  <text x="930" y="472" text-anchor="middle" font-size="20" fill="#94a3b8">3. Consult master reference</text>
+  <text x="930" y="506" text-anchor="middle" font-size="20" fill="#94a3b8">4. Construct structured prompt</text>
 
-  <!-- Prompt → generate_kie (horizontal) -->
-  <line x1="285" y1="180" x2="345" y2="180" stroke="#4f6ef7" stroke-width="2" marker-end="url(#a-blue)"/>
+  <line x1="680" y1="530" x2="1180" y2="530" stroke="#14532d" stroke-width="1"/>
 
-  <!-- Reference → generate_kie (diagonal, enters lower part of box) -->
-  <path d="M285,327 L315,327 L345,210" stroke="#f59e0b" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#a-amber)"/>
+  <!-- Two output formats -->
+  <text x="930" y="564" text-anchor="middle" font-size="22" font-weight="600" fill="#22c55e">Output Formats</text>
 
-  <!-- ═══════════════════════════════════════════
-       SCRIPTS COLUMN
-       ═══════════════════════════════════════════ -->
+  <rect x="690" y="586" width="230" height="80" rx="10" fill="#052e16" stroke="#4f6ef7" stroke-width="2"/>
+  <text x="805" y="618" text-anchor="middle" font-size="18" font-weight="600" fill="#4f6ef7">JSON Prompt</text>
+  <text x="805" y="646" text-anchor="middle" font-size="16" fill="#94a3b8">prompts/*.json</text>
 
-  <!-- generate_kie.py — PRIMARY -->
-  <rect x="345" y="118" width="355" height="135" rx="10" fill="#052e16" stroke="#22c55e" stroke-width="2.5" filter="url(#shadow)"/>
-  <!-- RECOMMENDED badge -->
-  <rect x="345" y="107" width="110" height="20" rx="5" fill="#22c55e"/>
-  <text x="400" y="121" text-anchor="middle" font-size="10" font-weight="700" fill="#052e16">RECOMMENDED</text>
-  <text x="522" y="146" text-anchor="middle" font-size="16" font-weight="700" fill="#22c55e">generate_kie.py</text>
-  <text x="522" y="164" text-anchor="middle" font-size="12" fill="#86efac">PRIMARY · Kie.ai nano-banana-2 API</text>
-  <line x1="358" y1="173" x2="687" y2="173" stroke="#14532d" stroke-width="1"/>
-  <text x="522" y="191" text-anchor="middle" font-size="12" fill="#94a3b8">Upload reference → submit task → poll status</text>
-  <text x="522" y="209" text-anchor="middle" font-size="12" fill="#94a3b8">download result · KIE_API_KEY required</text>
-  <text x="522" y="227" text-anchor="middle" font-size="11" fill="#4ade80">Supports reference image input</text>
-  <text x="522" y="243" text-anchor="middle" font-size="11" fill="#64748b">Highest quality · 2K output</text>
+  <rect x="940" y="586" width="240" height="80" rx="10" fill="#052e16" stroke="#06b6d4" stroke-width="2"/>
+  <text x="1060" y="618" text-anchor="middle" font-size="18" font-weight="600" fill="#06b6d4">Plain Text</text>
+  <text x="1060" y="646" text-anchor="middle" font-size="16" fill="#94a3b8">for Gemini web UI</text>
 
-  <!-- generate_sdxl.py -->
-  <rect x="345" y="280" width="355" height="100" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" filter="url(#shadow)"/>
-  <text x="522" y="308" text-anchor="middle" font-size="16" font-weight="700" fill="#818cf8">generate_sdxl.py</text>
-  <text x="522" y="326" text-anchor="middle" font-size="12" fill="#c7d2fe">Free cloud · Puter.ai SDXL</text>
-  <line x1="358" y1="334" x2="687" y2="334" stroke="#312e81" stroke-width="1"/>
-  <text x="522" y="352" text-anchor="middle" font-size="12" fill="#94a3b8">Single HTTP POST · no API key needed</text>
-  <text x="522" y="370" text-anchor="middle" font-size="11" fill="#64748b">1024 × 1024 · text prompt only</text>
+  <text x="805" y="710" text-anchor="middle" font-size="18" fill="#64748b">→ API backends</text>
+  <text x="1060" y="710" text-anchor="middle" font-size="18" fill="#64748b">→ copy/paste</text>
 
-  <!-- generate_local.py -->
-  <rect x="345" y="407" width="355" height="100" rx="10" fill="#1a0a2e" stroke="#a78bfa" stroke-width="2" filter="url(#shadow)"/>
-  <text x="522" y="435" text-anchor="middle" font-size="16" font-weight="700" fill="#a78bfa">generate_local.py</text>
-  <text x="522" y="453" text-anchor="middle" font-size="12" fill="#ddd6fe">Local SDXL · HuggingFace diffusers</text>
-  <line x1="358" y1="461" x2="687" y2="461" stroke="#2e1065" stroke-width="1"/>
-  <text x="522" y="479" text-anchor="middle" font-size="12" fill="#94a3b8">Runs on-device · GPU (CUDA) or CPU</text>
-  <text x="522" y="497" text-anchor="middle" font-size="11" fill="#64748b">No API key · ~5 GB model download</text>
+  <!-- Arrows: Input → AI Assistant -->
+  <line x1="580" y1="390" x2="650" y2="390" stroke="#4f6ef7" stroke-width="3" marker-end="url(#a-blue)"/>
+  <line x1="580" y1="620" x2="650" y2="560" stroke="#f59e0b" stroke-width="3" stroke-dasharray="8,4" marker-end="url(#a-amber)"/>
+  <line x1="580" y1="810" x2="650" y2="700" stroke="#f59e0b" stroke-width="3" stroke-dasharray="8,4" marker-end="url(#a-amber)"/>
 
-  <!-- generate_hf.py -->
-  <rect x="345" y="534" width="355" height="100" rx="10" fill="#2d0a0a" stroke="#f87171" stroke-width="2" filter="url(#shadow)"/>
-  <text x="522" y="562" text-anchor="middle" font-size="16" font-weight="700" fill="#f87171">generate_hf.py</text>
-  <text x="522" y="580" text-anchor="middle" font-size="12" fill="#fca5a5">Hugging Face Spaces API</text>
-  <line x1="358" y1="588" x2="687" y2="588" stroke="#7f1d1d" stroke-width="1"/>
-  <text x="522" y="606" text-anchor="middle" font-size="12" fill="#94a3b8">HF_TOKEN required · SD 1.5 / SDXL / Flux</text>
-  <text x="522" y="624" text-anchor="middle" font-size="11" fill="#f87171">⚠ Free tier deprecated — billing required</text>
+  <!-- ════════════════════════════════════════════
+       PHASE 2: SCRIPTS + BACKENDS (middle)
+       ════════════════════════════════════════════ -->
 
-  <!-- ═══════════════════════════════════════════
-       ARROWS: SCRIPTS → BACKENDS
-       ═══════════════════════════════════════════ -->
-  <line x1="700" y1="185" x2="765" y2="185" stroke="#22c55e" stroke-width="2"   marker-end="url(#a-green)"/>
-  <line x1="700" y1="330" x2="765" y2="330" stroke="#818cf8" stroke-width="2"   marker-end="url(#a-indigo)"/>
-  <line x1="700" y1="457" x2="765" y2="457" stroke="#a78bfa" stroke-width="2"   marker-end="url(#a-violet)"/>
-  <line x1="700" y1="584" x2="765" y2="584" stroke="#f87171" stroke-width="2"   marker-end="url(#a-red)"/>
+  <!-- Phase 2 header -->
+  <rect x="1280" y="180" width="1160" height="60" rx="12" fill="#1e293b"/>
+  <text x="1860" y="220" text-anchor="middle" font-size="26" font-weight="700" fill="#22c55e" letter-spacing="3">PHASE 2 — GENERATION</text>
 
-  <!-- ═══════════════════════════════════════════
-       BACKENDS COLUMN
-       ═══════════════════════════════════════════ -->
+  <!-- generate_kie.py → Kie.ai -->
+  <rect x="1300" y="280" width="520" height="130" rx="14" fill="#052e16" stroke="#22c55e" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="1300" y="264" width="160" height="32" rx="8" fill="#22c55e"/>
+  <text x="1380" y="286" text-anchor="middle" font-size="16" font-weight="700" fill="#052e16">RECOMMENDED</text>
+  <text x="1560" y="320" text-anchor="middle" font-size="26" font-weight="700" fill="#22c55e">generate_kie.py</text>
+  <line x1="1320" y1="340" x2="1800" y2="340" stroke="#14532d" stroke-width="1"/>
+  <text x="1560" y="370" text-anchor="middle" font-size="20" fill="#94a3b8">Kie.ai nano-banana-2 · KIE_API_KEY</text>
+  <text x="1560" y="398" text-anchor="middle" font-size="18" fill="#64748b">Upload ref → task → poll → download</text>
 
-  <!-- Kie.ai / nano-banana-2 -->
-  <rect x="765" y="118" width="385" height="140" rx="10" fill="#052e16" stroke="#22c55e" stroke-width="2.5" filter="url(#shadow)"/>
-  <text x="957" y="146" text-anchor="middle" font-size="16" font-weight="700" fill="#22c55e">☁  Kie.ai</text>
-  <text x="957" y="165" text-anchor="middle" font-size="13" fill="#86efac">nano-banana-2 model</text>
-  <line x1="778" y1="174" x2="1137" y2="174" stroke="#14532d" stroke-width="1"/>
-  <text x="957" y="193" text-anchor="middle" font-size="12" fill="#94a3b8">File upload service → base64 → hosted URL</text>
-  <text x="957" y="211" text-anchor="middle" font-size="12" fill="#94a3b8">Async task queue · poll every 5s · max 5 min</text>
-  <text x="957" y="229" text-anchor="middle" font-size="12" fill="#94a3b8">2K resolution · JPEG · identity-preserving</text>
-  <text x="957" y="247" text-anchor="middle" font-size="11" fill="#64748b">api.kie.ai/api/v1/jobs/</text>
+  <!-- generate_gemini.py → Gemini API -->
+  <rect x="1300" y="440" width="520" height="130" rx="14" fill="#083344" stroke="#06b6d4" stroke-width="3" filter="url(#shadow)"/>
+  <text x="1560" y="480" text-anchor="middle" font-size="26" font-weight="700" fill="#06b6d4">generate_gemini.py</text>
+  <line x1="1320" y1="500" x2="1800" y2="500" stroke="#164e63" stroke-width="1"/>
+  <text x="1560" y="530" text-anchor="middle" font-size="20" fill="#94a3b8">Google Gemini API · GEMINI_API_KEY</text>
+  <text x="1560" y="558" text-anchor="middle" font-size="18" fill="#64748b">Direct call · gemini-2.5-flash-image</text>
 
-  <!-- Puter.ai -->
-  <rect x="765" y="290" width="385" height="100" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" filter="url(#shadow)"/>
-  <text x="957" y="318" text-anchor="middle" font-size="16" font-weight="700" fill="#818cf8">☁  Puter.ai</text>
-  <text x="957" y="336" text-anchor="middle" font-size="12" fill="#c7d2fe">Stable Diffusion XL base 1.0</text>
-  <line x1="778" y1="344" x2="1137" y2="344" stroke="#312e81" stroke-width="1"/>
-  <text x="957" y="362" text-anchor="middle" font-size="12" fill="#94a3b8">Single POST · no auth · returns image URL</text>
-  <text x="957" y="380" text-anchor="middle" font-size="11" fill="#64748b">api.puter.ai/v2/image/generate · 1024 × 1024</text>
+  <!-- generate_sdxl.py → Puter.ai -->
+  <rect x="1300" y="600" width="520" height="110" rx="14" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1560" y="638" text-anchor="middle" font-size="24" font-weight="700" fill="#818cf8">generate_sdxl.py</text>
+  <line x1="1320" y1="656" x2="1800" y2="656" stroke="#312e81" stroke-width="1"/>
+  <text x="1560" y="684" text-anchor="middle" font-size="20" fill="#94a3b8">Free cloud SDXL · Puter.ai · no API key</text>
 
-  <!-- Local diffusers -->
-  <rect x="765" y="422" width="385" height="95" rx="10" fill="#1a0a2e" stroke="#a78bfa" stroke-width="2" filter="url(#shadow)"/>
-  <text x="957" y="450" text-anchor="middle" font-size="16" font-weight="700" fill="#a78bfa">💻  Local GPU / CPU</text>
-  <text x="957" y="468" text-anchor="middle" font-size="12" fill="#ddd6fe">SDXL via diffusers + torch</text>
-  <line x1="778" y1="476" x2="1137" y2="476" stroke="#2e1065" stroke-width="1"/>
-  <text x="957" y="494" text-anchor="middle" font-size="12" fill="#94a3b8">Runs fully on-device · no network calls</text>
-  <text x="957" y="510" text-anchor="middle" font-size="11" fill="#64748b">CUDA GPU accelerated · CPU fallback</text>
+  <!-- generate_local.py → Local -->
+  <rect x="1300" y="740" width="520" height="110" rx="14" fill="#1a0a2e" stroke="#a78bfa" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1560" y="778" text-anchor="middle" font-size="24" font-weight="700" fill="#a78bfa">generate_local.py</text>
+  <line x1="1320" y1="796" x2="1800" y2="796" stroke="#2e1065" stroke-width="1"/>
+  <text x="1560" y="824" text-anchor="middle" font-size="20" fill="#94a3b8">Local SDXL · diffusers · GPU/CPU</text>
 
-  <!-- Hugging Face -->
-  <rect x="765" y="548" width="385" height="100" rx="10" fill="#2d0a0a" stroke="#f87171" stroke-width="2" filter="url(#shadow)"/>
-  <text x="957" y="576" text-anchor="middle" font-size="16" font-weight="700" fill="#f87171">☁  Hugging Face</text>
-  <text x="957" y="594" text-anchor="middle" font-size="12" fill="#fca5a5">Spaces API · SD 1.5 / SDXL / Flux</text>
-  <line x1="778" y1="602" x2="1137" y2="602" stroke="#7f1d1d" stroke-width="1"/>
-  <text x="957" y="620" text-anchor="middle" font-size="12" fill="#94a3b8">Fallback with multiple Space endpoints</text>
-  <text x="957" y="638" text-anchor="middle" font-size="11" fill="#f87171">⚠ Free inference deprecated · paid billing required</text>
+  <!-- generate_hf.py → HuggingFace -->
+  <rect x="1300" y="880" width="520" height="110" rx="14" fill="#2d0a0a" stroke="#f87171" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1560" y="918" text-anchor="middle" font-size="24" font-weight="700" fill="#f87171">generate_hf.py</text>
+  <line x1="1320" y1="936" x2="1800" y2="936" stroke="#7f1d1d" stroke-width="1"/>
+  <text x="1560" y="964" text-anchor="middle" font-size="20" fill="#f87171">HF Spaces · HF_TOKEN · billing required</text>
 
-  <!-- ═══════════════════════════════════════════
-       ARROWS: BACKENDS → OUTPUT
-       ═══════════════════════════════════════════ -->
-  <line x1="1150" y1="188"  x2="1215" y2="260"  stroke="#22c55e" stroke-width="2"   marker-end="url(#a-green)"/>
-  <line x1="1150" y1="340"  x2="1215" y2="360"  stroke="#818cf8" stroke-width="2"   marker-end="url(#a-indigo)"/>
-  <line x1="1150" y1="469"  x2="1215" y2="450"  stroke="#a78bfa" stroke-width="2"   marker-end="url(#a-violet)"/>
-  <line x1="1150" y1="598"  x2="1215" y2="530"  stroke="#f87171" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#a-red)"/>
+  <!-- export_prompt.py → Gemini web UI -->
+  <rect x="1300" y="1020" width="520" height="110" rx="14" fill="#083344" stroke="#06b6d4" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1560" y="1058" text-anchor="middle" font-size="24" font-weight="700" fill="#06b6d4">export_prompt.py</text>
+  <line x1="1320" y1="1076" x2="1800" y2="1076" stroke="#164e63" stroke-width="1"/>
+  <text x="1560" y="1104" text-anchor="middle" font-size="20" fill="#94a3b8">JSON → plain text · for Gemini web UI</text>
 
-  <!-- ═══════════════════════════════════════════
-       OUTPUT COLUMN
-       ═══════════════════════════════════════════ -->
-  <rect x="1215" y="118" width="355" height="535" rx="10" fill="#0f172a" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
-  <text x="1392" y="148" text-anchor="middle" font-size="16" font-weight="700" fill="#f59e0b">Generated Image</text>
-  <line x1="1228" y1="158" x2="1557" y2="158" stroke="#78350f" stroke-width="1"/>
+  <!-- Arrows: Phase 1 → Phase 2 -->
+  <line x1="1200" y1="626" x2="1288" y2="345" stroke="#22c55e" stroke-width="3" marker-end="url(#a-green)"/>
+  <line x1="1200" y1="626" x2="1288" y2="505" stroke="#06b6d4" stroke-width="3" marker-end="url(#a-cyan)"/>
+  <line x1="1200" y1="626" x2="1288" y2="655" stroke="#818cf8" stroke-width="2" marker-end="url(#a-indigo)"/>
+  <line x1="1200" y1="626" x2="1288" y2="795" stroke="#a78bfa" stroke-width="2" marker-end="url(#a-violet)"/>
+  <line x1="1200" y1="626" x2="1288" y2="935" stroke="#f87171" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#a-red)"/>
+  <line x1="1200" y1="650" x2="1288" y2="1075" stroke="#06b6d4" stroke-width="2" marker-end="url(#a-cyan)"/>
 
-  <!-- Image placeholder box -->
-  <rect x="1240" y="168" width="325" height="205" rx="6" fill="url(#img-grad)" stroke="#334155" stroke-width="1"/>
-  <!-- Person silhouette -->
-  <circle cx="1402" cy="232" r="42" fill="#1e3a5f" stroke="#2d4a7a" stroke-width="1.5"/>
-  <path d="M1310,373 Q1332,295 1402,295 Q1472,295 1494,373 Z" fill="#1e3a5f" stroke="#2d4a7a" stroke-width="1.5"/>
-  <text x="1402" y="355" text-anchor="middle" font-size="10" fill="#475569">GENERATED OUTPUT</text>
+  <!-- ════════════════════════════════════════════
+       OUTPUT COLUMN (right)
+       ════════════════════════════════════════════ -->
 
-  <!-- Output specs -->
-  <text x="1392" y="398" text-anchor="middle" font-size="13" font-weight="600" fill="#22c55e">Kie.ai output</text>
-  <text x="1392" y="416" text-anchor="middle" font-size="12" fill="#94a3b8">1792 × 2400 px · 2K · JPEG</text>
-  <text x="1392" y="434" text-anchor="middle" font-size="11" fill="#64748b">~500 KB – 3.5 MB per image</text>
+  <!-- Phase output header -->
+  <rect x="2520" y="180" width="1260" height="60" rx="12" fill="#1e293b"/>
+  <text x="3150" y="220" text-anchor="middle" font-size="26" font-weight="700" fill="#f59e0b" letter-spacing="3">OUTPUT</text>
 
-  <line x1="1240" y1="448" x2="1557" y2="448" stroke="#1e293b" stroke-width="1"/>
+  <!-- Generated Image -->
+  <rect x="2540" y="280" width="560" height="840" rx="14" fill="#0f172a" stroke="#f59e0b" stroke-width="3" filter="url(#shadow)"/>
+  <text x="2820" y="320" text-anchor="middle" font-size="28" font-weight="700" fill="#f59e0b">Generated Image</text>
+  <line x1="2560" y1="340" x2="3080" y2="340" stroke="#78350f" stroke-width="1"/>
 
-  <text x="1392" y="468" text-anchor="middle" font-size="13" font-weight="600" fill="#818cf8">Free backend output</text>
-  <text x="1392" y="486" text-anchor="middle" font-size="12" fill="#94a3b8">1024 × 1024 px · JPEG</text>
+  <!-- Image placeholder -->
+  <rect x="2580" y="360" width="480" height="320" rx="8" fill="url(#img-grad)" stroke="#334155" stroke-width="2"/>
+  <circle cx="2820" cy="460" r="60" fill="#1e3a5f" stroke="#2d4a7a" stroke-width="2"/>
+  <path d="M2700,680 Q2730,570 2820,570 Q2910,570 2940,680 Z" fill="#1e3a5f" stroke="#2d4a7a" stroke-width="2"/>
+  <text x="2820" y="650" text-anchor="middle" font-size="18" fill="#475569">GENERATED OUTPUT</text>
 
-  <line x1="1240" y1="500" x2="1557" y2="500" stroke="#1e293b" stroke-width="1"/>
+  <text x="2820" y="720" text-anchor="middle" font-size="22" font-weight="600" fill="#22c55e">Kie.ai / Gemini output</text>
+  <text x="2820" y="752" text-anchor="middle" font-size="20" fill="#94a3b8">Up to 3840 × 2560 px · 4K · JPG/PNG</text>
+  <text x="2820" y="780" text-anchor="middle" font-size="18" fill="#64748b">Identity-preserving · reference images</text>
 
-  <text x="1392" y="520" text-anchor="middle" font-size="12" fill="#94a3b8">Saved to  images/output.jpg</text>
-  <text x="1392" y="538" text-anchor="middle" font-size="12" fill="#94a3b8">Version naming for refinement:</text>
-  <text x="1392" y="558" text-anchor="middle" font-size="13" font-weight="600" fill="#f59e0b">v1 → v1b → v1c → v1d</text>
-  <text x="1392" y="576" text-anchor="middle" font-size="11" fill="#64748b">iterate prompt JSON, rerun, compare</text>
+  <line x1="2580" y1="800" x2="3080" y2="800" stroke="#1e293b" stroke-width="1"/>
 
-  <line x1="1240" y1="590" x2="1557" y2="590" stroke="#1e293b" stroke-width="1"/>
+  <text x="2820" y="830" text-anchor="middle" font-size="22" font-weight="600" fill="#818cf8">Free backend output</text>
+  <text x="2820" y="860" text-anchor="middle" font-size="20" fill="#94a3b8">1024 × 1024 px · JPG</text>
 
-  <text x="1392" y="610" text-anchor="middle" font-size="11" fill="#64748b">⚠  Dashed arrow = limited availability</text>
-  <text x="1392" y="628" text-anchor="middle" font-size="11" fill="#f59e0b">Reference image: Kie.ai only</text>
-  <text x="1392" y="644" text-anchor="middle" font-size="11" fill="#64748b">Text prompt: all backends</text>
+  <line x1="2580" y1="886" x2="3080" y2="886" stroke="#1e293b" stroke-width="1"/>
 
-  <!-- ═══════════════════════════════════════════
+  <text x="2820" y="920" text-anchor="middle" font-size="20" fill="#94a3b8">Saved to images/output.jpg</text>
+  <text x="2820" y="952" text-anchor="middle" font-size="20" fill="#94a3b8">Version naming for refinement:</text>
+  <text x="2820" y="984" text-anchor="middle" font-size="22" font-weight="600" fill="#f59e0b">v1 → v1b → v1c → v2</text>
+  <text x="2820" y="1016" text-anchor="middle" font-size="18" fill="#64748b">iterate prompt, rerun, compare</text>
+
+  <!-- Gemini Web UI output -->
+  <rect x="3140" y="280" width="640" height="300" rx="14" fill="#0f172a" stroke="#06b6d4" stroke-width="3" filter="url(#shadow)"/>
+  <text x="3460" y="320" text-anchor="middle" font-size="28" font-weight="700" fill="#06b6d4">Gemini Web UI</text>
+  <line x1="3160" y1="340" x2="3760" y2="340" stroke="#164e63" stroke-width="1"/>
+  <text x="3460" y="376" text-anchor="middle" font-size="20" fill="#94a3b8">Manual copy/paste workflow</text>
+  <text x="3460" y="410" text-anchor="middle" font-size="20" fill="#94a3b8">1. Paste plain text prompt</text>
+  <text x="3460" y="440" text-anchor="middle" font-size="20" fill="#94a3b8">2. Upload reference images</text>
+  <text x="3460" y="470" text-anchor="middle" font-size="20" fill="#94a3b8">3. Download generated image</text>
+  <text x="3460" y="506" text-anchor="middle" font-size="22" font-weight="600" fill="#06b6d4">Free · No API key needed</text>
+  <text x="3460" y="540" text-anchor="middle" font-size="18" fill="#64748b">gemini.google.com</text>
+
+  <!-- Arrows: Scripts → Output -->
+  <line x1="1820" y1="345" x2="2528" y2="500" stroke="#22c55e" stroke-width="3" marker-end="url(#a-green)"/>
+  <line x1="1820" y1="505" x2="2528" y2="550" stroke="#06b6d4" stroke-width="3" marker-end="url(#a-cyan)"/>
+  <line x1="1820" y1="655" x2="2528" y2="650" stroke="#818cf8" stroke-width="2" marker-end="url(#a-indigo)"/>
+  <line x1="1820" y1="795" x2="2528" y2="700" stroke="#a78bfa" stroke-width="2" marker-end="url(#a-violet)"/>
+  <line x1="1820" y1="935" x2="2528" y2="750" stroke="#f87171" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#a-red)"/>
+  <line x1="1820" y1="1075" x2="3128" y2="450" stroke="#06b6d4" stroke-width="2" marker-end="url(#a-cyan)"/>
+
+  <!-- ════════════════════════════════════════════
        ENVIRONMENT VARIABLES LEGEND
-       ═══════════════════════════════════════════ -->
-  <rect x="30" y="672" width="1540" height="178" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
-  <text x="50" y="698" font-size="11" font-weight="700" fill="#475569" letter-spacing="2">ENVIRONMENT VARIABLES &amp; CONFIGURATION</text>
+       ════════════════════════════════════════════ -->
+  <rect x="60" y="1160" width="3720" height="320" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+  <text x="100" y="1200" font-size="22" font-weight="700" fill="#475569" letter-spacing="3">ENVIRONMENT VARIABLES &amp; CONFIGURATION</text>
 
-  <!-- KIE_API_KEY -->
-  <rect x="50"  y="710" width="230" height="70" rx="8" fill="#052e16" stroke="#22c55e" stroke-width="1.5"/>
-  <text x="165" y="733" text-anchor="middle" font-size="13" font-weight="700" fill="#22c55e">KIE_API_KEY</text>
-  <text x="165" y="751" text-anchor="middle" font-size="11" fill="#86efac">Required for Kie.ai</text>
-  <text x="165" y="768" text-anchor="middle" font-size="10" fill="#64748b">kie.ai → account → API keys</text>
+  <rect x="100" y="1220" width="400" height="100" rx="10" fill="#052e16" stroke="#22c55e" stroke-width="2"/>
+  <text x="300" y="1256" text-anchor="middle" font-size="22" font-weight="700" fill="#22c55e">KIE_API_KEY</text>
+  <text x="300" y="1284" text-anchor="middle" font-size="18" fill="#86efac">Required for Kie.ai</text>
+  <text x="300" y="1308" text-anchor="middle" font-size="16" fill="#64748b">kie.ai → account → API keys</text>
 
-  <!-- HF_TOKEN -->
-  <rect x="300" y="710" width="230" height="70" rx="8" fill="#2d0a0a" stroke="#f87171" stroke-width="1.5"/>
-  <text x="415" y="733" text-anchor="middle" font-size="13" font-weight="700" fill="#f87171">HF_TOKEN</text>
-  <text x="415" y="751" text-anchor="middle" font-size="11" fill="#fca5a5">Required for HF mode</text>
-  <text x="415" y="768" text-anchor="middle" font-size="10" fill="#64748b">huggingface.co → settings → tokens</text>
+  <rect x="540" y="1220" width="400" height="100" rx="10" fill="#083344" stroke="#06b6d4" stroke-width="2"/>
+  <text x="740" y="1256" text-anchor="middle" font-size="22" font-weight="700" fill="#06b6d4">GEMINI_API_KEY</text>
+  <text x="740" y="1284" text-anchor="middle" font-size="18" fill="#67e8f9">Required for Gemini API</text>
+  <text x="740" y="1308" text-anchor="middle" font-size="16" fill="#64748b">aistudio.google.com → API keys</text>
 
-  <!-- No key -->
-  <rect x="550" y="710" width="230" height="70" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
-  <text x="665" y="733" text-anchor="middle" font-size="13" font-weight="700" fill="#818cf8">No key needed</text>
-  <text x="665" y="751" text-anchor="middle" font-size="11" fill="#c7d2fe">Puter.ai + Local</text>
-  <text x="665" y="768" text-anchor="middle" font-size="10" fill="#64748b">generate_sdxl.py · generate_local.py</text>
+  <rect x="980" y="1220" width="400" height="100" rx="10" fill="#2d0a0a" stroke="#f87171" stroke-width="2"/>
+  <text x="1180" y="1256" text-anchor="middle" font-size="22" font-weight="700" fill="#f87171">HF_TOKEN</text>
+  <text x="1180" y="1284" text-anchor="middle" font-size="18" fill="#fca5a5">Required for HF mode</text>
+  <text x="1180" y="1308" text-anchor="middle" font-size="16" fill="#64748b">huggingface.co → settings → tokens</text>
 
-  <!-- Notes -->
-  <text x="830" y="726" font-size="12" fill="#94a3b8">Store all keys in</text>
-  <text x="934" y="726" font-size="12" fill="#f59e0b" font-weight="600">.env</text>
-  <text x="962" y="726" font-size="12" fill="#94a3b8">at project root — never commit to git</text>
+  <rect x="1420" y="1220" width="400" height="100" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+  <text x="1620" y="1256" text-anchor="middle" font-size="22" font-weight="700" fill="#818cf8">No key needed</text>
+  <text x="1620" y="1284" text-anchor="middle" font-size="18" fill="#c7d2fe">Puter.ai + Local + Gemini web UI</text>
+  <text x="1620" y="1308" text-anchor="middle" font-size="16" fill="#64748b">generate_sdxl.py · generate_local.py</text>
 
-  <text x="830" y="748" font-size="12" fill="#94a3b8">Prompts in</text>
-  <text x="904" y="748" font-size="12" fill="#4f6ef7" font-weight="600">prompts/*.json</text>
-  <text x="1015" y="748" font-size="12" fill="#94a3b8">· Reference images and output in</text>
-  <text x="1248" y="748" font-size="12" fill="#f59e0b" font-weight="600">images/</text>
+  <text x="1920" y="1260" font-size="20" fill="#94a3b8">Store keys in</text>
+  <text x="2054" y="1260" font-size="20" fill="#f59e0b" font-weight="600">.env</text>
+  <text x="2096" y="1260" font-size="20" fill="#94a3b8">at project root — never commit</text>
+  <text x="1920" y="1292" font-size="20" fill="#94a3b8">Prompts in</text>
+  <text x="2020" y="1292" font-size="20" fill="#4f6ef7" font-weight="600">prompts/*.json</text>
+  <text x="2164" y="1292" font-size="20" fill="#94a3b8">· Output in</text>
+  <text x="2270" y="1292" font-size="20" fill="#f59e0b" font-weight="600">images/</text>
+  <text x="1920" y="1324" font-size="20" fill="#94a3b8">Run:</text>
+  <text x="1966" y="1324" font-size="20" fill="#e2e8f0" font-weight="600">python scripts/generate_kie.py prompts/my_prompt.json images/output.jpg</text>
+  <text x="1920" y="1356" font-size="20" fill="#94a3b8">Master reference consulted before every prompt →</text>
+  <text x="2430" y="1356" font-size="20" fill="#f59e0b" font-weight="600">prompts/master_prompt_reference.md</text>
 
-  <text x="830" y="770" font-size="12" fill="#94a3b8">Run with:</text>
-  <text x="888" y="770" font-size="12" fill="#e2e8f0" font-weight="600">python scripts/generate_kie.py prompts/my_prompt.json images/output.jpg</text>
-
-  <text x="830" y="791" font-size="12" fill="#94a3b8">Install deps:</text>
-  <text x="904" y="791" font-size="12" fill="#e2e8f0" font-weight="600">pip install -r requirements.txt</text>
-  <text x="1064" y="791" font-size="12" fill="#94a3b8">· Activate venv first if using one</text>
-
-  <text x="830" y="813" font-size="12" fill="#94a3b8">Local backend requires:</text>
-  <text x="980" y="813" font-size="12" fill="#a78bfa" font-weight="600">pip install diffusers transformers torch Pillow</text>
-  <text x="1256" y="813" font-size="12" fill="#94a3b8">· ~5 GB model download on first run</text>
-
-  <text x="830" y="835" font-size="12" fill="#94a3b8">Iterative refinement: edit prompt JSON, rerun script, compare output —</text>
-  <text x="1294" y="835" font-size="12" fill="#f59e0b" font-weight="600">version files as v1, v1b, v1c</text>
+  <!-- Dashed arrow legend -->
+  <text x="1920" y="1420" font-size="18" fill="#64748b">━━━  solid arrow = active backend</text>
+  <text x="2280" y="1420" font-size="18" fill="#64748b">╍╍╍  dashed arrow = limited availability</text>
 
 </svg>
