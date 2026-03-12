@@ -1,6 +1,6 @@
 # nano-banana-images
 
-An AI image generation and restoration toolkit that turns natural language descriptions into photorealistic images using structured JSON prompts. Supports multiple backends: Kie.ai, Google Gemini API, free cloud SDXL, and local generation.
+An AI image generation toolkit that turns natural language descriptions into photorealistic images using structured JSON prompts. Supports multiple backends: Kie.ai, Google Gemini API, free cloud SDXL, and local generation.
 
 ## Demos
 
@@ -26,7 +26,7 @@ Tell Claude Code (or any AI assistant with the `nano-banana-images` skill) what 
 
 > "Create a candid photo of a woman jumping in the air with joy in a park, golden afternoon light, shallow depth of field, 2K resolution"
 
-Always include the desired **image resolution** in your request: `1K`, `2K`, or `4K`. This sets the output size in the prompt's `api_parameters.resolution` field.
+Always include the desired **image resolution** in your request: `1K`, `2K`, or `4K`. This sets the output size in the prompt's `api_parameters.resolution` field. Resolution affects API billing costs — if you don't specify, the tool will pause and ask.
 
 The tool consults [`prompts/master_prompt_reference.md`](prompts/master_prompt_reference.md) — the master reference guide that defines the JSON schema, photography parameters, and quality standards — to construct a prompt that produces hyper-realistic results.
 
@@ -96,71 +96,6 @@ You can also convert an existing JSON prompt to plain text using `export_prompt.
 python scripts/export_prompt.py prompts/woman_jumping_joy.json
 ```
 
-## Image Restoration
-
-Restore and enhance scanned vintage film photographs — upscale to 4K, sharpen, color-correct, and remove artifacts without altering content.
-
-**API path** — provide scanned photo → JSON updated → API restores image:
-
-![Restoration API Demo](demo/demo_restore_api.gif)
-
-**Gemini web UI path** — provide scanned photo → plain text prompt → paste into Gemini:
-
-![Restoration Gemini UI Demo](demo/demo_restore_gemini_ui.gif)
-
-### What Restoration Does
-
-The restoration prompt instructs the model to:
-
-1. **Analyze** — evaluate resolution, sharpness, noise, color balance, grain, dust/scratches
-2. **Upscale to 4K** — 3840px long edge, maintain aspect ratio, reconstruct detail from existing pixels only
-3. **Sharpen** — unsharp mask + detail recovery, restore edge crispness, enhance micro-contrast
-4. **Color correct** — neutralize aged film dye color casts, restore white balance, recover shadow/highlight detail
-5. **Remove artifacts** — film grain, dust specks, scratches, and scanning artifacts
-
-Strict constraints are enforced: no content alteration, no hallucinated details, no composition changes. The model can only upscale, sharpen, color-correct, and remove artifacts.
-
-### How to Restore an Image
-
-Tell Claude Code (with the `nano-banana-image-restoration` skill) that you want to restore a photo:
-
-> "Restore this scanned family photo: images/old_family_photo.jpg, 4K resolution"
-
-Always include the desired **output resolution** in your request: `1K`, `2K`, or `4K`. Restoration defaults to 4K (3840px long edge) but you can request a lower resolution if needed.
-
-The tool asks which restoration method you want to use:
-
-- **API** (Kie.ai, Gemini API) — the tool adds your source image to the `image_input` array in `prompts/image_restoration.json`, then runs the generation script to restore the image and save it to `images/`
-- **Gemini web UI** — the tool provides the structured plain-text restoration prompt from `prompts/image_restoration_plain_text.txt` for you to copy/paste into [gemini.google.com](https://gemini.google.com) alongside your uploaded photo
-
-### Path A: API Restoration (automated)
-
-The tool updates `image_restoration.json` with your source image path and runs the script:
-
-```bash
-# Via Kie.ai
-python scripts/generate_kie.py prompts/image_restoration.json images/restored_output.png
-
-# Via Gemini API
-python scripts/generate_gemini.py prompts/image_restoration.json images/restored_output.png
-```
-
-Output: PNG at 4K resolution saved to `images/`.
-
-### Path B: Gemini Web UI Restoration (manual, free, no API key)
-
-1. Go to [gemini.google.com](https://gemini.google.com)
-2. Upload your scanned photo
-3. Paste the contents of `prompts/image_restoration_plain_text.txt` alongside it
-4. Download the restored image from Gemini's response
-
-### Restoration Prompt Files
-
-| File | Format | Use With |
-|------|--------|----------|
-| `prompts/image_restoration.json` | Structured JSON | API backends (`generate_kie.py`, `generate_gemini.py`) |
-| `prompts/image_restoration_plain_text.txt` | Plain text | Copy/paste into Gemini web UI |
-
 ## Backends
 
 | Script | Provider | API Key | Prompt Input | Quality | Speed |
@@ -187,16 +122,12 @@ nano-banana-images/
 │   └── export_prompt.py                   # Convert JSON prompt → plain text
 ├── prompts/
 │   ├── master_prompt_reference.md         # Master reference: schema, best practices, quality standards
-│   ├── image_restoration.json             # Restoration prompt (for API backends)
-│   ├── image_restoration_plain_text.txt   # Restoration prompt (for Gemini web UI)
 │   └── *.json                             # Image generation prompts
 ├── images/
 │   └── *.jpg / *.png                      # Reference inputs + generated outputs
 ├── demo/
 │   ├── demo_api_path.gif                  # Demo: image generation via API
-│   ├── demo_gemini_ui_path.gif            # Demo: image generation via Gemini web UI
-│   ├── demo_restore_api.gif               # Demo: image restoration via API
-│   └── demo_restore_gemini_ui.gif         # Demo: image restoration via Gemini web UI
+│   └── demo_gemini_ui_path.gif            # Demo: image generation via Gemini web UI
 ├── docs/
 │   └── architecture.svg                   # Architecture diagram
 ├── .env                                   # API keys (not committed)
@@ -227,13 +158,11 @@ GEMINI_API_KEY=your_key_here
 
 Ask Claude Code (with the `nano-banana-images` skill) to create an image:
 
-> "Create a candid portrait of a woman jumping with joy in a park"
+> "Create a candid portrait of a woman jumping with joy in a park, 2K resolution"
 
 The tool will ask whether you want to generate via **API** or **Gemini web UI**, then create the appropriate structured prompt (JSON or plain text) and either run the generation script or output the text for you to paste.
 
-For restoration, the prompts are already provided — just add your source image path to `image_restoration.json` and run the script, or copy `image_restoration_plain_text.txt` into Gemini web UI.
-
-### 5. Iterate
+### 4. Iterate
 
 Version your prompts to track improvements: `prompt_v1.json` → `prompt_v1b.json` → `prompt_v2.json`. Each version refines the parameters based on the output quality.
 
@@ -245,7 +174,7 @@ All JSON prompts follow this structure. For the full schema breakdown, best prac
 |-------|----------|-------------|
 | `prompt` | Yes | Dense, detailed text description with camera math (lens, aperture, ISO), lighting behavior, skin/texture directives, and negative commands |
 | `negative_prompt` | Yes | Comma-separated list of things to avoid (AI artifacts, beauty filters, CGI, etc.) |
-| `image_input` | No | Array of local file paths to reference images. Used for identity preservation (generation) or as the source photo (restoration) |
+| `image_input` | No | Array of local file paths to reference images for identity preservation |
 | `api_parameters.resolution` | No | `"1K"`, `"2K"`, or `"4K"` (default: `"1K"`) |
 | `api_parameters.output_format` | No | `"jpg"` or `"png"` (default: `"jpg"`) |
 | `api_parameters.aspect_ratio` | No | e.g. `"3:4"`, `"16:9"`, `"4:5"`, `"auto"` |
@@ -265,7 +194,6 @@ The [`master_prompt_reference.md`](prompts/master_prompt_reference.md) file is t
 
 - **Prompt creation first** — you describe what you want in natural language, choose your output path (API or Gemini web UI), and the tool consults the [master prompt reference](prompts/master_prompt_reference.md) to construct the appropriate structured prompt (JSON or plain text) with photography parameters, negative constraints, and generation settings
 - **Reference image input** — provide a portrait and the model preserves facial features, style, or composition in the generated output
-- **Image restoration** — provide a scanned vintage photo and the model upscales, sharpens, color-corrects, and removes artifacts without altering content
 - **Structured prompts** — JSON format with explicit photography settings (focal length, aperture, lighting direction) neutralizes AI model biases and produces consistent results
 - **Iterative refinement** — version your prompt files (`_v1`, `_v1b`, `_v1c`, `_v2`) to track what changes improve output quality
 - **Multi-backend** — same JSON prompts work across Kie.ai, Gemini API, and Gemini web UI; SDXL backends accept the prompt text directly
@@ -277,6 +205,10 @@ The [`master_prompt_reference.md`](prompts/master_prompt_reference.md) file is t
 | `KIE_API_KEY` | For Kie.ai | Kie.ai API key |
 | `GEMINI_API_KEY` | For Gemini API | Google AI Studio API key |
 | `HF_TOKEN` | For HF mode | Hugging Face token |
+
+## Related
+
+For AI image **restoration** (enhancing scanned vintage photographs), see [nano-banana-image-restoration](https://github.com/Gil80/nano-banana-image-restoration).
 
 ## License
 
